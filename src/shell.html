@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#060507">
+<meta name="description" content="NearPresso helps you find your next espresso in Kuala Lumpur, Cyberjaya and Putrajaya. A handpicked, offline coffee atlas.">
+<title>NearPresso — The Klang Valley Espresso Atlas</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Crect%20width%3D%2248%22%20height%3D%2248%22%20rx%3D%2210%22%20fill%3D%22%23f74b01%22%2F%3E%3Cg%20transform%3D%22translate%286%206%29%20scale%281.5%29%22%20color%3D%22%23060507%22%3E%3Cpath%20d%3D%22M7.55%2014.2c1.2.4%202.7.65%204.45.65s3.25-.25%204.45-.65l-.83%203.92c-.1.49-.52.83-1.02.83H9.4c-.5%200-.92-.34-1.02-.83Z%22%20fill%3D%22currentColor%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m5.3%2010.6%201.8%208.4a2.35%202.35%200%200%200%202.3%201.86h5.2A2.35%202.35%200%200%200%2016.9%2019l1.8-8.4%22%2F%3E%3Cellipse%20cx%3D%2212%22%20cy%3D%2210.6%22%20rx%3D%226.7%22%20ry%3D%221.65%22%2F%3E%3Cpath%20d%3D%22M9.25%207.1c-1.05-.95-.9-1.72%200-2.6s1.05-1.65%200-2.6m5.5%205.2c-1.05-.95-.9-1.72%200-2.6s1.05-1.65%200-2.6%22%20stroke-width%3D%221.45%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<style>
+:root{color-scheme:dark;--black:#060507;--seal:#cbcfd2;--orange:#f74b01;--ember:#ff6d31;--white:#f1f0ed;--muted:#a09da3;--line:#2a272b;--surface:#100e11;--sans:"Helvetica Neue",Arial,sans-serif;--mono:ui-monospace,"SFMono-Regular",Consolas,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--black);color:var(--white);font-family:var(--sans)}
+button,input,a{-webkit-tap-highlight-color:transparent}
+button,input{font:inherit}
+button{color:inherit;cursor:pointer}
+a{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid var(--ember);outline-offset:4px}
+[hidden]{display:none!important}
+.icon{width:18px;height:18px;display:inline-block;flex:none;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.mono{font:600 10px/1.4 var(--mono);letter-spacing:.105em;text-transform:uppercase}
+.top{height:68px;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 30px;position:relative;z-index:3;background:linear-gradient(108deg,#181219,#0c0a0d 50%,#151217);box-shadow:0 5px 20px #0006}
+.brand{display:inline-flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.045em;font-size:23px;text-decoration:none}
+.brand-mark{width:33px;height:33px;display:grid;place-items:center;background:var(--orange);color:var(--black);border-radius:8px}
+.brand-mark .icon{width:24px;height:24px;stroke:none}
+.glass{
+  background:linear-gradient(145deg,rgb(203 207 210 / .17),transparent 65%),var(--glass-fill,#1b171d);
+  border:1px solid rgb(203 207 210 / .24);
+  box-shadow:inset 0 1px 0 rgb(255 255 255 / .08),0 8px 22px rgb(0 0 0 / .23)
+}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .glass{--glass-fill:rgb(21 17 23 / .60);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+}
+@media(prefers-reduced-transparency:reduce){
+  .glass{--glass-fill:#1b171d;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.trail{display:flex;align-items:center;gap:9px;padding:9px 10px 9px 12px;border-radius:8px;font-size:13px;font-weight:700;min-height:38px}
+.trail:hover,.trail[aria-pressed=true]{border-color:var(--ember);color:var(--ember)}
+.trail-count{display:grid;place-items:center;min-width:20px;padding:0 4px;height:19px;background:#272128;color:var(--seal);border-radius:3px;font:600 11px var(--mono)}
+.layout{display:grid;grid-template-columns:clamp(350px,30vw,432px) minmax(0,1fr);height:calc(100dvh - 68px);min-height:540px}
+.side{min-height:0;display:flex;flex-direction:column;background:linear-gradient(160deg,#161219,var(--black) 66%);border-right:1px solid var(--line);z-index:2}
+.intro{padding:34px 28px 20px;background:radial-gradient(ellipse at 5% 0%,rgb(247 75 1 / .14),transparent 66%);border-bottom:1px solid var(--line)}
+h1{font-size:clamp(46px,4.65vw,72px);line-height:.93;letter-spacing:-.075em;font-weight:800;margin:0 0 15px}
+h1 span{color:var(--seal)}
+h1 b{color:var(--orange)}
+.intro p{color:#b6b3b8;line-height:1.55;font-size:14px;margin:0 0 22px;max-width:34ch}
+.search{position:relative;display:flex;align-items:center;height:44px;background:linear-gradient(120deg,#262029,#18141b);border:1px solid #47404b;border-radius:8px;box-shadow:inset 0 1px 0 #fff1;padding-left:12px;color:var(--muted)}
+.search:focus-within{border-color:var(--ember)}
+.search input{width:100%;min-width:0;background:none;border:0;color:var(--white);padding:0 10px;outline:none;font-size:13px;height:100%}
+.search input::placeholder{color:#a09ca4}
+.search input::-webkit-search-cancel-button{display:none}
+.search button{border:0;background:none;padding:0 10px;height:100%;color:var(--muted)}
+.search button:hover{color:var(--white)}
+.filters{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.filters button,.trail-filters button{min-height:34px;padding:0 9px;border:1px solid #322d35;background:transparent;border-radius:4px;color:#c6c3c9;font-size:11px;font-weight:700;white-space:nowrap}
+.filters button:hover,.trail-filters button:hover{border-color:#807581}
+.filters button[aria-pressed=true],.trail-filters button[aria-pressed=true]{background:var(--orange);color:var(--black);border-color:var(--orange)}
+.trail-filters{display:flex;gap:6px;margin-top:10px}
+.list-title{padding:14px 28px 13px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:10px}
+.list-title h2{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.list-title output{color:var(--muted);font-size:9px;text-align:right}
+.rows{overflow:auto;overscroll-behavior:contain;scrollbar-color:#54434a transparent;min-height:0;flex:1;padding:0 15px}
+.row{display:flex;align-items:stretch;min-height:65px;border-bottom:1px solid #211e23;position:relative}
+.row.active{background:linear-gradient(90deg,#25140f 0%,#120c0e 84%);border-bottom-color:#362017}
+.row.active::before{position:absolute;content:"";left:0;top:10px;bottom:10px;width:2px;background:var(--orange)}
+.row:hover{background-color:#121015}
+.row-open{flex:1;min-width:0;display:grid;grid-template-columns:25px 1fr;gap:9px;align-items:center;text-align:left;border:0;background:none;padding:11px 2px 11px 13px}
+.row-no{color:#88838c;font:600 11px var(--mono)}
+.row.active .row-no{color:var(--ember)}
+.row-name{display:block;font-size:14px;font-weight:730;line-height:1.25;letter-spacing:-.013em}
+.row-sub{display:block;color:#aba7ae;font-size:11px;margin-top:4px;line-height:1.2}
+.row-save{align-self:center;background:none;border:0;border-radius:4px;width:38px;height:40px;margin-right:4px;color:#a8a2ae}
+.row-save:hover,.row-save[aria-pressed=true]{color:var(--ember)}
+.row-save[aria-pressed=true] .icon,.saved .icon{fill:currentColor}
+.empty{margin:27px 13px;color:var(--muted);font-size:14px;line-height:1.55}
+.side-footer{display:flex;align-items:center;justify-content:space-between;padding:9px 28px;border-top:1px solid var(--line);color:#a49da7;gap:12px}
+.side-footer button{background:none;border:0;padding:5px 0;font:inherit;color:var(--seal);white-space:nowrap}
+.side-footer button:hover{color:var(--ember)}
+.map{position:relative;isolation:isolate;min-width:0;min-height:0;overflow:hidden;background:#0d0b10}
+.map canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;outline-offset:-5px}
+.map canvas.dragging{cursor:grabbing}
+#google-map-host{position:absolute;inset:0;z-index:0}
+#google-map-host.loading{opacity:0;pointer-events:none}
+#google-map-host gmp-map-3d{display:block;width:100%;height:100%}
+.map.google-mode :is(.map-controls,.mobile-pan,.map-footer){display:none}
+.map.google-mode .map-title{text-shadow:0 1px 5px #000}
+.google-fit{display:none;min-height:33px;padding:0 8px;border-radius:7px;font-size:11px;font-weight:700}
+.map.google-mode .google-fit{display:inline-flex;align-items:center}
+.google-fit:hover{border-color:var(--ember);color:var(--ember)}
+.map-header{position:absolute;top:25px;left:27px;right:25px;display:flex;align-items:start;justify-content:space-between;pointer-events:none;gap:10px}
+.map-title .mono{color:var(--ember);display:block;font-size:9px;margin-bottom:5px}
+.map-title strong{display:block;font-weight:750;font-size:21px;letter-spacing:-.045em}
+.map-tools{display:flex;align-items:center;gap:6px;pointer-events:auto}
+.mobile-jump,.mobile-pan{display:none}
+.modes{display:flex;padding:3px;border-radius:8px;pointer-events:auto;gap:2px;flex:none}
+.modes button{min-width:35px;min-height:31px;background:transparent;color:var(--muted);border:0;border-radius:3px;padding:0 10px;font:700 11px var(--mono)}
+.modes button[aria-pressed=true]{background:rgb(203 207 210 / .17);color:var(--white)}
+.map-controls{position:absolute;right:25px;bottom:67px;display:grid;gap:7px}
+.control-stack{display:grid;border-radius:8px;overflow:hidden}
+.map-controls button{display:grid;place-items:center;width:40px;height:39px;padding:0;color:var(--seal);position:relative}
+.control-stack button{border:0;background:transparent}
+.control-stack button+button{border-top:1px solid rgb(203 207 210 / .16)}
+.map-controls button.solo{box-sizing:content-box;border-radius:8px}
+.map-controls button:hover,.modes button:hover{color:var(--ember)}
+.map-controls button:focus-visible{outline-offset:-3px}
+.map-footer{position:absolute;bottom:0;left:0;right:0;min-height:38px;padding:11px 26px;display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid #302730;background:#100e12;color:#b3aeb7;font-size:9px}
+.legend{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.legend i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+.map-footer a{text-decoration:none}
+.map-footer a:hover{text-decoration:underline}
+.pin-layer{position:absolute;inset:0;z-index:0;pointer-events:none}
+.map-pin{
+  position:absolute;display:grid;place-items:center;width:29px;height:29px;padding:0;
+  background-color:var(--pin-smoke,#28242b);
+  background-image:linear-gradient(150deg,rgb(203 207 210 / .27),transparent 64%);
+  border:1px solid rgb(203 207 210 / .53);border-radius:50%;color:#f7d4c4;
+  box-shadow:inset 0 1px 0 #fff2,0 2px 5px #0009;
+  transform:translate(-50%,-50%);pointer-events:auto;font:800 11px var(--mono);
+  transition:background-color .15s,border-color .15s,box-shadow .15s,color .15s
+}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .map-pin{--pin-smoke:rgb(24 20 27 / .76);--pin-warm:rgb(60 30 24 / .8);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+}
+@media(prefers-reduced-transparency:reduce){
+  .map-pin{--pin-smoke:#28242b;--pin-warm:#3b241e;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.map-pin .icon{width:16px;height:16px;stroke:none;overflow:visible}
+.map-pin.single{width:22px;height:22px}
+.map-pin:is(:hover,:focus-visible,.current){
+  background-color:var(--pin-warm,#3b241e);border-color:#ffa477;color:#fff1e9;z-index:2;
+  box-shadow:inset 0 1px 0 #ffd4c04d,0 0 0 2px #f74b0126,0 0 12px #f74b0166
+}
+.map-pin.current{width:33px;height:33px;box-shadow:inset 0 1px 0 #ffd4c055,0 0 0 3px #f74b0133,0 0 16px #f74b0180}
+.map-pin.current .icon{width:21px;height:21px}
+.map-pin.google-pin{position:relative;transform:none}
+gmp-marker-interactive:focus-visible .google-pin{outline:2px solid var(--ember);outline-offset:3px}
+@keyframes pin-steam-rise{
+  0%,14%,100%{transform:translateY(0);opacity:1}
+  62%{transform:translateY(-1.4px);opacity:0}
+  63%{transform:translateY(.3px);opacity:0}
+}
+@media(prefers-reduced-motion:no-preference){
+  .map-pin:is(:hover,.current) .pin-steam{animation:pin-steam-rise 2.6s ease-in-out}
+  @media(hover:hover){
+    .map-pin:hover .pin-steam{animation-iteration-count:infinite}
+  }
+}
+.detail{position:absolute;bottom:59px;left:26px;width:min(340px,calc(100% - 94px));border-top-color:rgb(255 142 95 / .66);border-radius:12px;padding:15px 15px 13px;box-shadow:inset 0 1px 0 rgb(255 255 255 / .09),0 15px 35px #0007}
+.detail-top{display:flex;align-items:center;justify-content:space-between;gap:5px}
+.detail-top .mono{color:var(--ember);font-size:9px}
+.detail-top button{padding:0;border:0;width:26px;height:25px;background:transparent;color:var(--muted)}
+.detail-top button:hover{color:var(--white)}
+.detail h2{font-size:23px;line-height:1.06;letter-spacing:-.045em;margin:5px 0 4px}
+.detail .location{font-size:12px;color:var(--seal);margin:0}
+.detail .note{color:#bcb7bf;line-height:1.45;font-size:12px;margin:10px 0 12px}
+.detail-actions{display:flex;gap:5px;flex-wrap:wrap}
+.detail-actions a,.detail-actions button{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:35px;padding:0 8px;border:1px solid rgb(203 207 210 / .24);border-radius:5px;background:rgb(8 6 10 / .24);color:var(--seal);font-size:11px;font-weight:700;text-decoration:none}
+.detail-actions .maps-link{background:var(--orange);border-color:var(--orange);color:var(--black);padding:0 8px}
+.detail-actions button:hover,.detail-actions button[aria-pressed=true]{color:var(--ember);border-color:#82503b}
+.detail-actions a:hover{background:#ff763e}
+.detail-actions .icon{width:13px;height:13px}
+.cluster-list{display:grid;gap:3px;margin-top:9px;max-height:180px;overflow:auto}
+.cluster-list button{border:1px solid #38303a;text-align:left;background:#211a22;padding:8px;border-radius:4px;font-size:12px}
+.cluster-list button:hover{border-color:var(--orange)}
+.google-map-setup{position:absolute;top:50%;left:50%;z-index:2;width:min(390px,calc(100% - 28px));max-height:calc(100% - 112px);overflow:auto;transform:translate(-50%,-50%);padding:19px;border-radius:12px;border-top-color:#ff8e5faa;box-shadow:0 15px 35px #000a}
+.google-map-setup h2{margin:0 0 8px;font-size:23px;letter-spacing:-.04em}
+.google-map-setup p{margin:0 0 13px;color:var(--seal);font-size:13px;line-height:1.45}
+.google-map-setup a{color:#ffaf89;text-underline-offset:2px}
+.google-map-setup label{display:block;margin:0 0 5px;font-size:12px;font-weight:700}
+.google-map-setup input{width:100%;height:40px;padding:0 10px;margin:0 0 11px;background:#151217;color:var(--white);border:1px solid #5a505e;border-radius:6px}
+.google-map-actions{display:flex;flex-wrap:wrap;gap:7px}
+.google-map-actions button{min-height:36px;padding:0 10px;background:#272128;color:var(--white);border:1px solid #5a505e;border-radius:6px;font-size:12px;font-weight:700}
+#google-map-submit{background:var(--orange);color:var(--black);border-color:var(--orange)}
+#google-map-submit:disabled{opacity:.72;cursor:wait}
+#google-map-message{margin:10px 0 0;color:#ffbc9f}
+#google-map-message:empty{margin:0}
+dialog{width:min(480px,calc(100% - 32px));color:var(--white);background:#151116;border:1px solid #4f404c;border-top:2px solid var(--orange);border-radius:8px;padding:22px 24px}
+dialog::backdrop{background:#060507bb}
+dialog h2{margin:0 0 10px;letter-spacing:-.04em}
+dialog p{color:var(--seal);line-height:1.55;font-size:14px}
+dialog a{color:var(--ember)}
+dialog button{border:1px solid #51424e;background:#28212a;padding:7px 11px;border-radius:4px}
+.cafe-review{margin:0 0 10px;padding:7px 9px;border:1px solid rgb(203 207 210 / .18);border-left-color:var(--ember);border-radius:5px;background:rgb(6 5 7 / .27)}
+.review-rating{color:var(--ember);font:700 11px/1.4 var(--mono)}
+.review-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;overflow-wrap:anywhere;white-space:pre-wrap;margin:4px 0 0;color:var(--seal);font-size:12px;line-height:1.4}
+.review-dialog{
+  width:min(430px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;
+  padding:clamp(18px,5vw,26px);border-radius:14px;border-color:rgb(203 207 210 / .28);border-top-color:var(--ember);
+  background:linear-gradient(150deg,rgb(203 207 210 / .14),transparent 65%),var(--glass-fill,#1b171d);
+  box-shadow:inset 0 1px 0 rgb(255 255 255 / .08),0 0 28px rgb(247 75 1 / .16),0 18px 50px #000b
+}
+.review-dialog::backdrop{background:#060507c9}
+.review-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.review-head h2{margin:0;font-size:clamp(22px,6vw,28px);line-height:1.1}
+.review-head button{display:grid;place-items:center;flex:none;width:44px;min-height:44px;padding:0;color:var(--seal);border-radius:7px;background:rgb(6 5 7 / .36)}
+.review-place{margin:1px 0 16px;color:var(--seal);overflow-wrap:anywhere}
+.review-stars{min-width:0;margin:0 0 16px;padding:0;border:0}
+.review-stars legend,.review-note-label{display:block;margin:0 0 7px;padding:0;color:var(--seal);font-size:13px;font-weight:700}
+.review-note-label span{color:var(--muted);font-weight:400}
+.review-star{position:relative;display:inline-grid;vertical-align:middle;cursor:pointer}
+.review-star span{display:grid;place-items:center;width:44px;height:44px;border:1px solid rgb(203 207 210 / .24);border-radius:7px;background:rgb(6 5 7 / .38);color:var(--muted);font-size:23px;line-height:1}
+:is(.review-star input:checked + span,.review-star:has(~ .review-star input:checked) span){color:var(--ember);background:rgb(247 75 1 / .14);border-color:rgb(255 109 49 / .63)}
+.review-star:hover span,.review-head button:hover,.review-actions button:hover{border-color:var(--ember);color:var(--ember)}
+.review-star input:focus-visible + span,.review-dialog textarea:focus-visible{outline:2px solid var(--ember);outline-offset:2px}
+.review-dialog textarea{display:block;width:100%;min-height:86px;resize:vertical;padding:10px 11px;color:var(--white);background:rgb(6 5 7 / .44);border:1px solid #665765;border-radius:7px;font:400 16px/1.4 var(--sans)}
+.review-dialog textarea::placeholder{color:var(--muted)}
+#review-privacy{margin:9px 0 0;color:var(--muted);font-size:12px}
+.review-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px;margin-top:17px}
+.review-actions button{min-height:44px;padding:0 13px;border-radius:7px;font-size:13px;font-weight:700}
+.review-actions button[type=submit]{background:var(--orange);border-color:var(--orange);color:var(--black)}
+.review-actions button[type=submit]:hover{background:var(--ember);border-color:var(--ember)}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:800px){
+  .top{height:58px;padding:0 17px}.brand{font-size:22px}.brand-mark{width:30px;height:30px}
+  .layout{height:auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto auto}
+  .side{display:contents}.intro{grid-row:1;padding:23px 17px 15px}.intro h1{font-size:clamp(43px,9vw,64px);margin:0 0 8px}.intro h1 br{display:none}.intro p{font-size:13px;margin-bottom:13px;max-width:none}.filters button{min-height:36px}
+  .map{grid-row:2;height:clamp(485px,62vh,600px);border-bottom:1px solid var(--line)}
+  .map-header{top:16px;left:16px;right:16px}.map-title strong{font-size:18px}.map-controls{right:12px;bottom:49px}.map-controls button{width:37px;height:36px}
+  .map canvas{touch-action:pan-y}.map.pan-enabled canvas{touch-action:none}
+  .mobile-jump,.mobile-pan{display:inline-flex;align-items:center;min-height:38px;padding:0 8px;border-radius:7px;text-decoration:none;color:var(--seal);font-size:11px;font-weight:700;white-space:nowrap}.mobile-jump:hover,.mobile-pan[aria-pressed=true]{border-color:var(--ember);color:var(--ember)}
+  .map-footer{padding:9px 13px;min-height:34px}.map-hint{display:none}.detail{left:12px;bottom:47px;width:min(330px,calc(100% - 63px));padding:10px 10px 9px}.detail h2{font-size:21px}.detail .note{margin:7px 0 9px}
+  .list-title{grid-row:3;padding-left:17px;padding-right:17px}.rows{grid-row:4;overflow:visible;padding:0 7px}.side-footer{grid-row:5;padding:12px 17px}
+}
+@media(max-width:375px){
+  .intro h1{font-size:41px}.map-title strong{font-size:16px}.detail-actions a,.detail-actions button{padding:0 5px;font-size:10px}.map-footer{font-size:8px}
+  .map-header{left:12px;right:12px;gap:7px;flex-wrap:wrap}.map-tools{gap:4px;max-width:100%}
+  .map-tools :is(.mobile-jump,.mobile-pan){padding-inline:6px}
+  .modes button{min-width:29px;padding-inline:6px;font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="visually-hidden" aria-hidden="true">
+<symbol id="i-espresso-glass" viewBox="0 0 24 24"><path d="M7.55 14.2c1.2.4 2.7.65 4.45.65s3.25-.25 4.45-.65l-.83 3.92c-.1.49-.52.83-1.02.83H9.4c-.5 0-.92-.34-1.02-.83Z" fill="currentColor"/><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5.3 10.6 1.8 8.4a2.35 2.35 0 0 0 2.3 1.86h5.2A2.35 2.35 0 0 0 16.9 19l1.8-8.4"/><ellipse cx="12" cy="10.6" rx="6.7" ry="1.65"/></g></symbol>
+<symbol id="i-espresso-steam" viewBox="0 0 24 24"><path d="M9.25 7.1c-1.05-.95-.9-1.72 0-2.6s1.05-1.65 0-2.6m5.5 5.2c-1.05-.95-.9-1.72 0-2.6s1.05-1.65 0-2.6" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5"/><circle cx="12" cy="12" r="2"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+</svg>
+<header class="top">
+  <a class="brand" href="#" aria-label="NearPresso, reset atlas">
+    <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-espresso-glass"/><use href="#i-espresso-steam"/></svg></span>
+    <span>NearPresso</span>
+  </a>
+  <button class="trail glass" id="trail" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-bookmark"/></svg>My trail <span class="trail-count" id="trail-count">0</span></button>
+</header>
+<main class="layout">
+  <aside class="side" aria-label="Espresso directory">
+    <section class="intro">
+      <h1>Locate<b>.</b> <br><span>Caffeinate</span></h1>
+      <p>From KL’s roasteries to Putrajaya’s lakeside cafés. Find a counter worth the detour.</p>
+      <div class="search">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="search" type="search" autocomplete="off" placeholder="Search cafés or neighbourhoods" aria-label="Search cafés or neighbourhoods">
+        <button id="clear" type="button" aria-label="Clear search" hidden><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="filters" id="filters" aria-label="Filter by city">
+        <button type="button" data-city="all" aria-pressed="true">All areas</button>
+        <button type="button" data-city="Kuala Lumpur" aria-pressed="false">Kuala Lumpur</button>
+        <button type="button" data-city="Cyberjaya" aria-pressed="false">Cyberjaya</button>
+        <button type="button" data-city="Putrajaya" aria-pressed="false">Putrajaya</button>
+      </div>
+      <div class="trail-filters" id="trail-filters" aria-label="Filter trail" hidden>
+        <button type="button" data-trail="all" aria-pressed="true">All my stops</button>
+        <button type="button" data-trail="saved" aria-pressed="false">Saved</button>
+        <button type="button" data-trail="tried" aria-pressed="false">Tried</button>
+      </div>
+    </section>
+    <div class="list-title"><h2 id="list-title">Coffee stops</h2><output class="mono" id="count" aria-live="polite"></output><a class="mobile-jump glass" href="#atlas-map">Map ↑</a></div>
+    <div class="rows" id="rows" aria-label="Café results"></div>
+    <footer class="side-footer mono"><span>KL · CYBERJAYA · PUTRAJAYA</span><button type="button" id="about-open">About ↗</button></footer>
+  </aside>
+  <section class="map" id="atlas-map" aria-label="Interactive espresso map">
+    <canvas id="map" tabindex="0" aria-label="Map. Arrow keys pan, plus and minus zoom. All cafés are also available in the directory."></canvas>
+    <div id="pins" class="pin-layer" aria-label="Map pins"></div>
+    <div id="google-map-host" hidden></div>
+    <div class="map-header">
+      <div class="map-title"><span class="mono">FIELD MAP / MY</span><strong id="map-name">Klang Valley</strong></div>
+      <div class="map-tools">
+        <a class="mobile-jump glass" href="#list-title">List ↓</a>
+        <button class="mobile-pan glass" id="mobile-pan" type="button" aria-label="Touch pan and pinch" aria-pressed="false">Pan</button>
+        <div class="modes glass" aria-label="Map view">
+          <button type="button" data-mode="3d" aria-label="Offline 3D map" aria-pressed="true">3D</button>
+          <button type="button" data-mode="2d" aria-label="Offline 2D map" aria-pressed="false">2D</button>
+          <button type="button" data-mode="google" aria-label="Google 3D map, online" aria-pressed="false">Google</button>
+        </div>
+        <button type="button" class="google-fit glass" data-google-fit aria-label="Fit cafés to map">Fit</button>
+      </div>
+    </div>
+    <div class="map-controls" aria-label="Map controls">
+      <button type="button" class="solo glass" id="rotate" aria-label="Rotate map" title="Rotate map"><svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg></button>
+      <div class="control-stack glass">
+        <button type="button" id="zoom-in" aria-label="Zoom in" title="Zoom in"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <button type="button" id="zoom-out" aria-label="Zoom out" title="Zoom out"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+      </div>
+      <button type="button" class="solo glass" id="fit" aria-label="Fit cafés to map" title="Fit cafés to map"><svg class="icon" aria-hidden="true"><use href="#i-fit"/></svg></button>
+    </div>
+    <section class="detail glass" id="detail" aria-label="Selected café" hidden></section>
+    <footer class="map-footer mono"><span class="legend"><i></i> Espresso stops</span><span class="map-hint">Drag to pan · Scroll to zoom</span><a id="basemap-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a></footer>
+    <form class="google-map-setup glass" id="google-map-setup" aria-labelledby="google-map-heading" aria-describedby="google-map-intro" hidden>
+      <h2 id="google-map-heading">Google 3D Roadmap</h2>
+      <p id="google-map-intro">Explore the same cafés on Google’s dark street map. This view streams online.</p>
+      <p>Try it with a <a href="https://developers.google.com/maps/documentation/javascript/demo-key" target="_blank" rel="noopener noreferrer">free Maps Demo Key</a>. NearPresso uses your key for this tab.</p>
+      <p>Google’s <a href="https://maps.google.com/help/terms_maps/" target="_blank" rel="noopener noreferrer">Maps terms</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a> apply to this view.</p>
+      <label for="google-map-key">Google Maps API key</label>
+      <input id="google-map-key" type="password" required autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="google-map-actions">
+        <button type="submit" id="google-map-submit">Load Google map</button>
+        <button type="button" data-google-cancel>Back to atlas</button>
+      </div>
+      <p id="google-map-message" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<dialog id="about">
+  <form method="dialog">
+    <h2>About the atlas</h2>
+    <p id="about-edition"></p>
+    <p id="about-map"></p>
+    <p id="storage-note">Use Google Maps for current hours, menus and directions. My trail is stored in this browser. Return to the same web address or local file to keep your log together.</p>
+    <h3>Terms and privacy</h3>
+    <p>Your saves, visits and reviews stay in this browser. Loading the optional Google map sends your API key and map requests to Google. By using that view, you agree to the <a href="https://maps.google.com/help/terms_maps/" target="_blank" rel="noopener noreferrer">Google Maps terms</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google Terms of Service</a>. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google’s privacy policy</a> for how Google handles those requests.</p>
+    <button>Close</button>
+  </form>
+</dialog>
+<dialog id="review-dialog" class="review-dialog glass" aria-labelledby="review-title" aria-describedby="review-place review-privacy">
+  <form id="review-form">
+    <div class="review-head">
+      <h2 id="review-title">Review this café</h2>
+      <button type="button" data-review-close aria-label="Close review"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <p class="review-place" id="review-place"></p>
+    <fieldset class="review-stars">
+      <legend>Rating</legend>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="1" aria-label="1 star" required><span aria-hidden="true">★</span></label>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="2" aria-label="2 stars"><span aria-hidden="true">★</span></label>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="3" aria-label="3 stars"><span aria-hidden="true">★</span></label>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="4" aria-label="4 stars"><span aria-hidden="true">★</span></label>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="5" aria-label="5 stars"><span aria-hidden="true">★</span></label>
+    </fieldset>
+    <label class="review-note-label" for="review-note">Tasting note <span>(optional)</span></label>
+    <textarea id="review-note" name="note" rows="4" maxlength="500" placeholder="What stood out about the shot?"></textarea>
+    <p id="review-privacy">Your review is saved in this browser.</p>
+    <div class="review-actions">
+      <button type="submit">Save review</button>
+      <button type="button" data-review-close id="review-cancel">Skip for now</button>
+    </div>
+  </form>
+</dialog>
+<script>
+/* APP DATA */
+/* APP CODE */
+</script>
+</body>
+</html>

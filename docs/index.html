@@ -1,0 +1,1472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#060507">
+<meta name="description" content="NearPresso helps you find your next espresso in Kuala Lumpur, Cyberjaya and Putrajaya. A handpicked, offline coffee atlas.">
+<title>NearPresso — The Klang Valley Espresso Atlas</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Crect%20width%3D%2248%22%20height%3D%2248%22%20rx%3D%2210%22%20fill%3D%22%23f74b01%22%2F%3E%3Cg%20transform%3D%22translate%286%206%29%20scale%281.5%29%22%20color%3D%22%23060507%22%3E%3Cpath%20d%3D%22M7.55%2014.2c1.2.4%202.7.65%204.45.65s3.25-.25%204.45-.65l-.83%203.92c-.1.49-.52.83-1.02.83H9.4c-.5%200-.92-.34-1.02-.83Z%22%20fill%3D%22currentColor%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m5.3%2010.6%201.8%208.4a2.35%202.35%200%200%200%202.3%201.86h5.2A2.35%202.35%200%200%200%2016.9%2019l1.8-8.4%22%2F%3E%3Cellipse%20cx%3D%2212%22%20cy%3D%2210.6%22%20rx%3D%226.7%22%20ry%3D%221.65%22%2F%3E%3Cpath%20d%3D%22M9.25%207.1c-1.05-.95-.9-1.72%200-2.6s1.05-1.65%200-2.6m5.5%205.2c-1.05-.95-.9-1.72%200-2.6s1.05-1.65%200-2.6%22%20stroke-width%3D%221.45%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<style>
+:root{color-scheme:dark;--black:#060507;--seal:#cbcfd2;--orange:#f74b01;--ember:#ff6d31;--white:#f1f0ed;--muted:#a09da3;--line:#2a272b;--surface:#100e11;--sans:"Helvetica Neue",Arial,sans-serif;--mono:ui-monospace,"SFMono-Regular",Consolas,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--black);color:var(--white);font-family:var(--sans)}
+button,input,a{-webkit-tap-highlight-color:transparent}
+button,input{font:inherit}
+button{color:inherit;cursor:pointer}
+a{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid var(--ember);outline-offset:4px}
+[hidden]{display:none!important}
+.icon{width:18px;height:18px;display:inline-block;flex:none;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.mono{font:600 10px/1.4 var(--mono);letter-spacing:.105em;text-transform:uppercase}
+.top{height:68px;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 30px;position:relative;z-index:3;background:linear-gradient(108deg,#181219,#0c0a0d 50%,#151217);box-shadow:0 5px 20px #0006}
+.brand{display:inline-flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.045em;font-size:23px;text-decoration:none}
+.brand-mark{width:33px;height:33px;display:grid;place-items:center;background:var(--orange);color:var(--black);border-radius:8px}
+.brand-mark .icon{width:24px;height:24px;stroke:none}
+.glass{
+  background:linear-gradient(145deg,rgb(203 207 210 / .17),transparent 65%),var(--glass-fill,#1b171d);
+  border:1px solid rgb(203 207 210 / .24);
+  box-shadow:inset 0 1px 0 rgb(255 255 255 / .08),0 8px 22px rgb(0 0 0 / .23)
+}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .glass{--glass-fill:rgb(21 17 23 / .60);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+}
+@media(prefers-reduced-transparency:reduce){
+  .glass{--glass-fill:#1b171d;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.trail{display:flex;align-items:center;gap:9px;padding:9px 10px 9px 12px;border-radius:8px;font-size:13px;font-weight:700;min-height:38px}
+.trail:hover,.trail[aria-pressed=true]{border-color:var(--ember);color:var(--ember)}
+.trail-count{display:grid;place-items:center;min-width:20px;padding:0 4px;height:19px;background:#272128;color:var(--seal);border-radius:3px;font:600 11px var(--mono)}
+.layout{display:grid;grid-template-columns:clamp(350px,30vw,432px) minmax(0,1fr);height:calc(100dvh - 68px);min-height:540px}
+.side{min-height:0;display:flex;flex-direction:column;background:linear-gradient(160deg,#161219,var(--black) 66%);border-right:1px solid var(--line);z-index:2}
+.intro{padding:34px 28px 20px;background:radial-gradient(ellipse at 5% 0%,rgb(247 75 1 / .14),transparent 66%);border-bottom:1px solid var(--line)}
+h1{font-size:clamp(46px,4.65vw,72px);line-height:.93;letter-spacing:-.075em;font-weight:800;margin:0 0 15px}
+h1 span{color:var(--seal)}
+h1 b{color:var(--orange)}
+.intro p{color:#b6b3b8;line-height:1.55;font-size:14px;margin:0 0 22px;max-width:34ch}
+.search{position:relative;display:flex;align-items:center;height:44px;background:linear-gradient(120deg,#262029,#18141b);border:1px solid #47404b;border-radius:8px;box-shadow:inset 0 1px 0 #fff1;padding-left:12px;color:var(--muted)}
+.search:focus-within{border-color:var(--ember)}
+.search input{width:100%;min-width:0;background:none;border:0;color:var(--white);padding:0 10px;outline:none;font-size:13px;height:100%}
+.search input::placeholder{color:#a09ca4}
+.search input::-webkit-search-cancel-button{display:none}
+.search button{border:0;background:none;padding:0 10px;height:100%;color:var(--muted)}
+.search button:hover{color:var(--white)}
+.filters{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.filters button,.trail-filters button{min-height:34px;padding:0 9px;border:1px solid #322d35;background:transparent;border-radius:4px;color:#c6c3c9;font-size:11px;font-weight:700;white-space:nowrap}
+.filters button:hover,.trail-filters button:hover{border-color:#807581}
+.filters button[aria-pressed=true],.trail-filters button[aria-pressed=true]{background:var(--orange);color:var(--black);border-color:var(--orange)}
+.trail-filters{display:flex;gap:6px;margin-top:10px}
+.list-title{padding:14px 28px 13px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:10px}
+.list-title h2{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.list-title output{color:var(--muted);font-size:9px;text-align:right}
+.rows{overflow:auto;overscroll-behavior:contain;scrollbar-color:#54434a transparent;min-height:0;flex:1;padding:0 15px}
+.row{display:flex;align-items:stretch;min-height:65px;border-bottom:1px solid #211e23;position:relative}
+.row.active{background:linear-gradient(90deg,#25140f 0%,#120c0e 84%);border-bottom-color:#362017}
+.row.active::before{position:absolute;content:"";left:0;top:10px;bottom:10px;width:2px;background:var(--orange)}
+.row:hover{background-color:#121015}
+.row-open{flex:1;min-width:0;display:grid;grid-template-columns:25px 1fr;gap:9px;align-items:center;text-align:left;border:0;background:none;padding:11px 2px 11px 13px}
+.row-no{color:#88838c;font:600 11px var(--mono)}
+.row.active .row-no{color:var(--ember)}
+.row-name{display:block;font-size:14px;font-weight:730;line-height:1.25;letter-spacing:-.013em}
+.row-sub{display:block;color:#aba7ae;font-size:11px;margin-top:4px;line-height:1.2}
+.row-save{align-self:center;background:none;border:0;border-radius:4px;width:38px;height:40px;margin-right:4px;color:#a8a2ae}
+.row-save:hover,.row-save[aria-pressed=true]{color:var(--ember)}
+.row-save[aria-pressed=true] .icon,.saved .icon{fill:currentColor}
+.empty{margin:27px 13px;color:var(--muted);font-size:14px;line-height:1.55}
+.side-footer{display:flex;align-items:center;justify-content:space-between;padding:9px 28px;border-top:1px solid var(--line);color:#a49da7;gap:12px}
+.side-footer button{background:none;border:0;padding:5px 0;font:inherit;color:var(--seal);white-space:nowrap}
+.side-footer button:hover{color:var(--ember)}
+.map{position:relative;isolation:isolate;min-width:0;min-height:0;overflow:hidden;background:#0d0b10}
+.map canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;outline-offset:-5px}
+.map canvas.dragging{cursor:grabbing}
+#google-map-host{position:absolute;inset:0;z-index:0}
+#google-map-host.loading{opacity:0;pointer-events:none}
+#google-map-host gmp-map-3d{display:block;width:100%;height:100%}
+.map.google-mode :is(.map-controls,.mobile-pan,.map-footer){display:none}
+.map.google-mode .map-title{text-shadow:0 1px 5px #000}
+.google-fit{display:none;min-height:33px;padding:0 8px;border-radius:7px;font-size:11px;font-weight:700}
+.map.google-mode .google-fit{display:inline-flex;align-items:center}
+.google-fit:hover{border-color:var(--ember);color:var(--ember)}
+.map-header{position:absolute;top:25px;left:27px;right:25px;display:flex;align-items:start;justify-content:space-between;pointer-events:none;gap:10px}
+.map-title .mono{color:var(--ember);display:block;font-size:9px;margin-bottom:5px}
+.map-title strong{display:block;font-weight:750;font-size:21px;letter-spacing:-.045em}
+.map-tools{display:flex;align-items:center;gap:6px;pointer-events:auto}
+.mobile-jump,.mobile-pan{display:none}
+.modes{display:flex;padding:3px;border-radius:8px;pointer-events:auto;gap:2px;flex:none}
+.modes button{min-width:35px;min-height:31px;background:transparent;color:var(--muted);border:0;border-radius:3px;padding:0 10px;font:700 11px var(--mono)}
+.modes button[aria-pressed=true]{background:rgb(203 207 210 / .17);color:var(--white)}
+.map-controls{position:absolute;right:25px;bottom:67px;display:grid;gap:7px}
+.control-stack{display:grid;border-radius:8px;overflow:hidden}
+.map-controls button{display:grid;place-items:center;width:40px;height:39px;padding:0;color:var(--seal);position:relative}
+.control-stack button{border:0;background:transparent}
+.control-stack button+button{border-top:1px solid rgb(203 207 210 / .16)}
+.map-controls button.solo{box-sizing:content-box;border-radius:8px}
+.map-controls button:hover,.modes button:hover{color:var(--ember)}
+.map-controls button:focus-visible{outline-offset:-3px}
+.map-footer{position:absolute;bottom:0;left:0;right:0;min-height:38px;padding:11px 26px;display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid #302730;background:#100e12;color:#b3aeb7;font-size:9px}
+.legend{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.legend i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+.map-footer a{text-decoration:none}
+.map-footer a:hover{text-decoration:underline}
+.pin-layer{position:absolute;inset:0;z-index:0;pointer-events:none}
+.map-pin{
+  position:absolute;display:grid;place-items:center;width:29px;height:29px;padding:0;
+  background-color:var(--pin-smoke,#28242b);
+  background-image:linear-gradient(150deg,rgb(203 207 210 / .27),transparent 64%);
+  border:1px solid rgb(203 207 210 / .53);border-radius:50%;color:#f7d4c4;
+  box-shadow:inset 0 1px 0 #fff2,0 2px 5px #0009;
+  transform:translate(-50%,-50%);pointer-events:auto;font:800 11px var(--mono);
+  transition:background-color .15s,border-color .15s,box-shadow .15s,color .15s
+}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .map-pin{--pin-smoke:rgb(24 20 27 / .76);--pin-warm:rgb(60 30 24 / .8);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+}
+@media(prefers-reduced-transparency:reduce){
+  .map-pin{--pin-smoke:#28242b;--pin-warm:#3b241e;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.map-pin .icon{width:16px;height:16px;stroke:none;overflow:visible}
+.map-pin.single{width:22px;height:22px}
+.map-pin:is(:hover,:focus-visible,.current){
+  background-color:var(--pin-warm,#3b241e);border-color:#ffa477;color:#fff1e9;z-index:2;
+  box-shadow:inset 0 1px 0 #ffd4c04d,0 0 0 2px #f74b0126,0 0 12px #f74b0166
+}
+.map-pin.current{width:33px;height:33px;box-shadow:inset 0 1px 0 #ffd4c055,0 0 0 3px #f74b0133,0 0 16px #f74b0180}
+.map-pin.current .icon{width:21px;height:21px}
+.map-pin.google-pin{position:relative;transform:none}
+gmp-marker-interactive:focus-visible .google-pin{outline:2px solid var(--ember);outline-offset:3px}
+@keyframes pin-steam-rise{
+  0%,14%,100%{transform:translateY(0);opacity:1}
+  62%{transform:translateY(-1.4px);opacity:0}
+  63%{transform:translateY(.3px);opacity:0}
+}
+@media(prefers-reduced-motion:no-preference){
+  .map-pin:is(:hover,.current) .pin-steam{animation:pin-steam-rise 2.6s ease-in-out}
+  @media(hover:hover){
+    .map-pin:hover .pin-steam{animation-iteration-count:infinite}
+  }
+}
+.detail{position:absolute;bottom:59px;left:26px;width:min(340px,calc(100% - 94px));border-top-color:rgb(255 142 95 / .66);border-radius:12px;padding:15px 15px 13px;box-shadow:inset 0 1px 0 rgb(255 255 255 / .09),0 15px 35px #0007}
+.detail-top{display:flex;align-items:center;justify-content:space-between;gap:5px}
+.detail-top .mono{color:var(--ember);font-size:9px}
+.detail-top button{padding:0;border:0;width:26px;height:25px;background:transparent;color:var(--muted)}
+.detail-top button:hover{color:var(--white)}
+.detail h2{font-size:23px;line-height:1.06;letter-spacing:-.045em;margin:5px 0 4px}
+.detail .location{font-size:12px;color:var(--seal);margin:0}
+.detail .note{color:#bcb7bf;line-height:1.45;font-size:12px;margin:10px 0 12px}
+.detail-actions{display:flex;gap:5px;flex-wrap:wrap}
+.detail-actions a,.detail-actions button{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:35px;padding:0 8px;border:1px solid rgb(203 207 210 / .24);border-radius:5px;background:rgb(8 6 10 / .24);color:var(--seal);font-size:11px;font-weight:700;text-decoration:none}
+.detail-actions .maps-link{background:var(--orange);border-color:var(--orange);color:var(--black);padding:0 8px}
+.detail-actions button:hover,.detail-actions button[aria-pressed=true]{color:var(--ember);border-color:#82503b}
+.detail-actions a:hover{background:#ff763e}
+.detail-actions .icon{width:13px;height:13px}
+.cluster-list{display:grid;gap:3px;margin-top:9px;max-height:180px;overflow:auto}
+.cluster-list button{border:1px solid #38303a;text-align:left;background:#211a22;padding:8px;border-radius:4px;font-size:12px}
+.cluster-list button:hover{border-color:var(--orange)}
+.google-map-setup{position:absolute;top:50%;left:50%;z-index:2;width:min(390px,calc(100% - 28px));max-height:calc(100% - 112px);overflow:auto;transform:translate(-50%,-50%);padding:19px;border-radius:12px;border-top-color:#ff8e5faa;box-shadow:0 15px 35px #000a}
+.google-map-setup h2{margin:0 0 8px;font-size:23px;letter-spacing:-.04em}
+.google-map-setup p{margin:0 0 13px;color:var(--seal);font-size:13px;line-height:1.45}
+.google-map-setup a{color:#ffaf89;text-underline-offset:2px}
+.google-map-setup label{display:block;margin:0 0 5px;font-size:12px;font-weight:700}
+.google-map-setup input{width:100%;height:40px;padding:0 10px;margin:0 0 11px;background:#151217;color:var(--white);border:1px solid #5a505e;border-radius:6px}
+.google-map-actions{display:flex;flex-wrap:wrap;gap:7px}
+.google-map-actions button{min-height:36px;padding:0 10px;background:#272128;color:var(--white);border:1px solid #5a505e;border-radius:6px;font-size:12px;font-weight:700}
+#google-map-submit{background:var(--orange);color:var(--black);border-color:var(--orange)}
+#google-map-submit:disabled{opacity:.72;cursor:wait}
+#google-map-message{margin:10px 0 0;color:#ffbc9f}
+#google-map-message:empty{margin:0}
+dialog{width:min(480px,calc(100% - 32px));color:var(--white);background:#151116;border:1px solid #4f404c;border-top:2px solid var(--orange);border-radius:8px;padding:22px 24px}
+dialog::backdrop{background:#060507bb}
+dialog h2{margin:0 0 10px;letter-spacing:-.04em}
+dialog p{color:var(--seal);line-height:1.55;font-size:14px}
+dialog a{color:var(--ember)}
+dialog button{border:1px solid #51424e;background:#28212a;padding:7px 11px;border-radius:4px}
+.cafe-review{margin:0 0 10px;padding:7px 9px;border:1px solid rgb(203 207 210 / .18);border-left-color:var(--ember);border-radius:5px;background:rgb(6 5 7 / .27)}
+.review-rating{color:var(--ember);font:700 11px/1.4 var(--mono)}
+.review-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;overflow-wrap:anywhere;white-space:pre-wrap;margin:4px 0 0;color:var(--seal);font-size:12px;line-height:1.4}
+.review-dialog{
+  width:min(430px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;
+  padding:clamp(18px,5vw,26px);border-radius:14px;border-color:rgb(203 207 210 / .28);border-top-color:var(--ember);
+  background:linear-gradient(150deg,rgb(203 207 210 / .14),transparent 65%),var(--glass-fill,#1b171d);
+  box-shadow:inset 0 1px 0 rgb(255 255 255 / .08),0 0 28px rgb(247 75 1 / .16),0 18px 50px #000b
+}
+.review-dialog::backdrop{background:#060507c9}
+.review-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.review-head h2{margin:0;font-size:clamp(22px,6vw,28px);line-height:1.1}
+.review-head button{display:grid;place-items:center;flex:none;width:44px;min-height:44px;padding:0;color:var(--seal);border-radius:7px;background:rgb(6 5 7 / .36)}
+.review-place{margin:1px 0 16px;color:var(--seal);overflow-wrap:anywhere}
+.review-stars{min-width:0;margin:0 0 16px;padding:0;border:0}
+.review-stars legend,.review-note-label{display:block;margin:0 0 7px;padding:0;color:var(--seal);font-size:13px;font-weight:700}
+.review-note-label span{color:var(--muted);font-weight:400}
+.review-star{position:relative;display:inline-grid;vertical-align:middle;cursor:pointer}
+.review-star span{display:grid;place-items:center;width:44px;height:44px;border:1px solid rgb(203 207 210 / .24);border-radius:7px;background:rgb(6 5 7 / .38);color:var(--muted);font-size:23px;line-height:1}
+:is(.review-star input:checked + span,.review-star:has(~ .review-star input:checked) span){color:var(--ember);background:rgb(247 75 1 / .14);border-color:rgb(255 109 49 / .63)}
+.review-star:hover span,.review-head button:hover,.review-actions button:hover{border-color:var(--ember);color:var(--ember)}
+.review-star input:focus-visible + span,.review-dialog textarea:focus-visible{outline:2px solid var(--ember);outline-offset:2px}
+.review-dialog textarea{display:block;width:100%;min-height:86px;resize:vertical;padding:10px 11px;color:var(--white);background:rgb(6 5 7 / .44);border:1px solid #665765;border-radius:7px;font:400 16px/1.4 var(--sans)}
+.review-dialog textarea::placeholder{color:var(--muted)}
+#review-privacy{margin:9px 0 0;color:var(--muted);font-size:12px}
+.review-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px;margin-top:17px}
+.review-actions button{min-height:44px;padding:0 13px;border-radius:7px;font-size:13px;font-weight:700}
+.review-actions button[type=submit]{background:var(--orange);border-color:var(--orange);color:var(--black)}
+.review-actions button[type=submit]:hover{background:var(--ember);border-color:var(--ember)}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:800px){
+  .top{height:58px;padding:0 17px}.brand{font-size:22px}.brand-mark{width:30px;height:30px}
+  .layout{height:auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto auto}
+  .side{display:contents}.intro{grid-row:1;padding:23px 17px 15px}.intro h1{font-size:clamp(43px,9vw,64px);margin:0 0 8px}.intro h1 br{display:none}.intro p{font-size:13px;margin-bottom:13px;max-width:none}.filters button{min-height:36px}
+  .map{grid-row:2;height:clamp(485px,62vh,600px);border-bottom:1px solid var(--line)}
+  .map-header{top:16px;left:16px;right:16px}.map-title strong{font-size:18px}.map-controls{right:12px;bottom:49px}.map-controls button{width:37px;height:36px}
+  .map canvas{touch-action:pan-y}.map.pan-enabled canvas{touch-action:none}
+  .mobile-jump,.mobile-pan{display:inline-flex;align-items:center;min-height:38px;padding:0 8px;border-radius:7px;text-decoration:none;color:var(--seal);font-size:11px;font-weight:700;white-space:nowrap}.mobile-jump:hover,.mobile-pan[aria-pressed=true]{border-color:var(--ember);color:var(--ember)}
+  .map-footer{padding:9px 13px;min-height:34px}.map-hint{display:none}.detail{left:12px;bottom:47px;width:min(330px,calc(100% - 63px));padding:10px 10px 9px}.detail h2{font-size:21px}.detail .note{margin:7px 0 9px}
+  .list-title{grid-row:3;padding-left:17px;padding-right:17px}.rows{grid-row:4;overflow:visible;padding:0 7px}.side-footer{grid-row:5;padding:12px 17px}
+}
+@media(max-width:375px){
+  .intro h1{font-size:41px}.map-title strong{font-size:16px}.detail-actions a,.detail-actions button{padding:0 5px;font-size:10px}.map-footer{font-size:8px}
+  .map-header{left:12px;right:12px;gap:7px;flex-wrap:wrap}.map-tools{gap:4px;max-width:100%}
+  .map-tools :is(.mobile-jump,.mobile-pan){padding-inline:6px}
+  .modes button{min-width:29px;padding-inline:6px;font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="visually-hidden" aria-hidden="true">
+<symbol id="i-espresso-glass" viewBox="0 0 24 24"><path d="M7.55 14.2c1.2.4 2.7.65 4.45.65s3.25-.25 4.45-.65l-.83 3.92c-.1.49-.52.83-1.02.83H9.4c-.5 0-.92-.34-1.02-.83Z" fill="currentColor"/><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5.3 10.6 1.8 8.4a2.35 2.35 0 0 0 2.3 1.86h5.2A2.35 2.35 0 0 0 16.9 19l1.8-8.4"/><ellipse cx="12" cy="10.6" rx="6.7" ry="1.65"/></g></symbol>
+<symbol id="i-espresso-steam" viewBox="0 0 24 24"><path d="M9.25 7.1c-1.05-.95-.9-1.72 0-2.6s1.05-1.65 0-2.6m5.5 5.2c-1.05-.95-.9-1.72 0-2.6s1.05-1.65 0-2.6" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5"/><circle cx="12" cy="12" r="2"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+</svg>
+<header class="top">
+  <a class="brand" href="#" aria-label="NearPresso, reset atlas">
+    <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-espresso-glass"/><use href="#i-espresso-steam"/></svg></span>
+    <span>NearPresso</span>
+  </a>
+  <button class="trail glass" id="trail" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-bookmark"/></svg>My trail <span class="trail-count" id="trail-count">0</span></button>
+</header>
+<main class="layout">
+  <aside class="side" aria-label="Espresso directory">
+    <section class="intro">
+      <h1>Locate<b>.</b> <br><span>Caffeinate</span></h1>
+      <p>From KL’s roasteries to Putrajaya’s lakeside cafés. Find a counter worth the detour.</p>
+      <div class="search">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="search" type="search" autocomplete="off" placeholder="Search cafés or neighbourhoods" aria-label="Search cafés or neighbourhoods">
+        <button id="clear" type="button" aria-label="Clear search" hidden><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="filters" id="filters" aria-label="Filter by city">
+        <button type="button" data-city="all" aria-pressed="true">All areas</button>
+        <button type="button" data-city="Kuala Lumpur" aria-pressed="false">Kuala Lumpur</button>
+        <button type="button" data-city="Cyberjaya" aria-pressed="false">Cyberjaya</button>
+        <button type="button" data-city="Putrajaya" aria-pressed="false">Putrajaya</button>
+      </div>
+      <div class="trail-filters" id="trail-filters" aria-label="Filter trail" hidden>
+        <button type="button" data-trail="all" aria-pressed="true">All my stops</button>
+        <button type="button" data-trail="saved" aria-pressed="false">Saved</button>
+        <button type="button" data-trail="tried" aria-pressed="false">Tried</button>
+      </div>
+    </section>
+    <div class="list-title"><h2 id="list-title">Coffee stops</h2><output class="mono" id="count" aria-live="polite"></output><a class="mobile-jump glass" href="#atlas-map">Map ↑</a></div>
+    <div class="rows" id="rows" aria-label="Café results"></div>
+    <footer class="side-footer mono"><span>KL · CYBERJAYA · PUTRAJAYA</span><button type="button" id="about-open">About ↗</button></footer>
+  </aside>
+  <section class="map" id="atlas-map" aria-label="Interactive espresso map">
+    <canvas id="map" tabindex="0" aria-label="Map. Arrow keys pan, plus and minus zoom. All cafés are also available in the directory."></canvas>
+    <div id="pins" class="pin-layer" aria-label="Map pins"></div>
+    <div id="google-map-host" hidden></div>
+    <div class="map-header">
+      <div class="map-title"><span class="mono">FIELD MAP / MY</span><strong id="map-name">Klang Valley</strong></div>
+      <div class="map-tools">
+        <a class="mobile-jump glass" href="#list-title">List ↓</a>
+        <button class="mobile-pan glass" id="mobile-pan" type="button" aria-label="Touch pan and pinch" aria-pressed="false">Pan</button>
+        <div class="modes glass" aria-label="Map view">
+          <button type="button" data-mode="3d" aria-label="Offline 3D map" aria-pressed="true">3D</button>
+          <button type="button" data-mode="2d" aria-label="Offline 2D map" aria-pressed="false">2D</button>
+          <button type="button" data-mode="google" aria-label="Google 3D map, online" aria-pressed="false">Google</button>
+        </div>
+        <button type="button" class="google-fit glass" data-google-fit aria-label="Fit cafés to map">Fit</button>
+      </div>
+    </div>
+    <div class="map-controls" aria-label="Map controls">
+      <button type="button" class="solo glass" id="rotate" aria-label="Rotate map" title="Rotate map"><svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg></button>
+      <div class="control-stack glass">
+        <button type="button" id="zoom-in" aria-label="Zoom in" title="Zoom in"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <button type="button" id="zoom-out" aria-label="Zoom out" title="Zoom out"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+      </div>
+      <button type="button" class="solo glass" id="fit" aria-label="Fit cafés to map" title="Fit cafés to map"><svg class="icon" aria-hidden="true"><use href="#i-fit"/></svg></button>
+    </div>
+    <section class="detail glass" id="detail" aria-label="Selected café" hidden></section>
+    <footer class="map-footer mono"><span class="legend"><i></i> Espresso stops</span><span class="map-hint">Drag to pan · Scroll to zoom</span><a id="basemap-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a></footer>
+    <form class="google-map-setup glass" id="google-map-setup" aria-labelledby="google-map-heading" aria-describedby="google-map-intro" hidden>
+      <h2 id="google-map-heading">Google 3D Roadmap</h2>
+      <p id="google-map-intro">Explore the same cafés on Google’s dark street map. This view streams online.</p>
+      <p>Try it with a <a href="https://developers.google.com/maps/documentation/javascript/demo-key" target="_blank" rel="noopener noreferrer">free Maps Demo Key</a>. NearPresso uses your key for this tab.</p>
+      <p>Google’s <a href="https://maps.google.com/help/terms_maps/" target="_blank" rel="noopener noreferrer">Maps terms</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a> apply to this view.</p>
+      <label for="google-map-key">Google Maps API key</label>
+      <input id="google-map-key" type="password" required autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="google-map-actions">
+        <button type="submit" id="google-map-submit">Load Google map</button>
+        <button type="button" data-google-cancel>Back to atlas</button>
+      </div>
+      <p id="google-map-message" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<dialog id="about">
+  <form method="dialog">
+    <h2>About the atlas</h2>
+    <p id="about-edition"></p>
+    <p id="about-map"></p>
+    <p id="storage-note">Use Google Maps for current hours, menus and directions. My trail is stored in this browser. Return to the same web address or local file to keep your log together.</p>
+    <h3>Terms and privacy</h3>
+    <p>Your saves, visits and reviews stay in this browser. Loading the optional Google map sends your API key and map requests to Google. By using that view, you agree to the <a href="https://maps.google.com/help/terms_maps/" target="_blank" rel="noopener noreferrer">Google Maps terms</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google Terms of Service</a>. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google’s privacy policy</a> for how Google handles those requests.</p>
+    <button>Close</button>
+  </form>
+</dialog>
+<dialog id="review-dialog" class="review-dialog glass" aria-labelledby="review-title" aria-describedby="review-place review-privacy">
+  <form id="review-form">
+    <div class="review-head">
+      <h2 id="review-title">Review this café</h2>
+      <button type="button" data-review-close aria-label="Close review"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <p class="review-place" id="review-place"></p>
+    <fieldset class="review-stars">
+      <legend>Rating</legend>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="1" aria-label="1 star" required><span aria-hidden="true">★</span></label>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="2" aria-label="2 stars"><span aria-hidden="true">★</span></label>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="3" aria-label="3 stars"><span aria-hidden="true">★</span></label>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="4" aria-label="4 stars"><span aria-hidden="true">★</span></label>
+      <label class="review-star"><input class="visually-hidden" type="radio" name="rating" value="5" aria-label="5 stars"><span aria-hidden="true">★</span></label>
+    </fieldset>
+    <label class="review-note-label" for="review-note">Tasting note <span>(optional)</span></label>
+    <textarea id="review-note" name="note" rows="4" maxlength="500" placeholder="What stood out about the shot?"></textarea>
+    <p id="review-privacy">Your review is saved in this browser.</p>
+    <div class="review-actions">
+      <button type="submit">Save review</button>
+      <button type="button" data-review-close id="review-cancel">Skip for now</button>
+    </div>
+  </form>
+</dialog>
+<script>
+const cities = ['Kuala Lumpur', 'Cyberjaya', 'Putrajaya'];
+const cafes = [
+  ['VCR · Galloway',0,'Bukit Bintang','Specialty coffee',3.1432498,101.7054472,'https://www.google.com/maps/place/VCR/data=!4m6!3m5!1s0x31cc49d7955a883d:0xf04e0ee880881581!8m2!3d3.1432498!4d101.7054472!16s%2Fg%2F1ptwy0hqg','Start at VCR’s original black house on Jalan Galloway. Ask which coffee is on espresso today.'],
+  ['Feeka Coffee Roasters',0,'Bukit Bintang','Roaster',3.1486849,101.7084482,'ChIJoZHXWCo2zDERg8ElLFMydz4','A Jalan Mesui roaster and a natural second stop after Galloway.'],
+  ['Afloat Coffee Roaster',0,'Bukit Jalil','Roaster',3.0620172,101.6758757,'ChIJ6fpYAk9LzDERpcp8_zZLLLY','Head south to Afloat’s Bukit Jalil branch for a roaster-led stop.'],
+  ['Peep Coffee',0,'Bangsar','Coffee bar',3.1316643,101.6709192,'ChIJR6429KdJzDERKXbi8gFnH1Y','Look for the coffee counter inside Vernakular on Jalan Telawi.'],
+  ['Ditto Specialty Coffee Bar',0,'Damansara Heights','Coffee bar',3.139961,101.6575695,'ChIJKXUVlfJJzDERDk0LAoooUyk','A specialty bar for the west side of the city.'],
+  ['Common Man Coffee Roasters · TTDI',0,'TTDI','Roaster',3.1395359,101.6299983,'ChIJsfUxqztJzDERNSiW6AxnvL8','The Plaza VADS branch on Jalan Tun Mohd Fuad.'],
+  ['The Hub Coffee Roaster · MET Galleria',0,'Mont Kiara','Roaster',3.1759691,101.6695355,'ChIJs1Vph6hJzDERy0Wi1GHhlxA','The Hub’s MET Galleria branch. Ask about the current espresso selection.'],
+  ['Bean Brothers · Bukit Bintang',0,'Bukit Bintang','Specialty coffee',3.1475152,101.7132973,'ChIJ71k8Qbk3zDER8UJOzCpjj0s','A central KL stop east of Feeka.'],
+  ['Jeju Coffee',0,'Bukit Bintang','Coffee shop',3.1486934,101.708186,'ChIJFyvTLgA3zDERCI-YTMxNCOo','On the same Jalan Mesui stretch as Feeka. Put both on one walk.'],
+  ['LOVNS Coffee · Mid Valley',0,'Mid Valley City','Coffee shop',3.1185575,101.6770114,'ChIJ44gItVhJzDERFWqRKyuC-N0','An espresso detour in Mid Valley City.'],
+  ['Common Man Coffee Roasters · Hartamas',0,'Desa Sri Hartamas','Roaster',3.1616397,101.6490684,'ChIJ7xEJk-pJzDERPscceMr7xwI','Use this pin for the Hartamas branch.'],
+  ['Spaces Café · Platinum Sentral',0,'KL Sentral','Coffee shop',3.1361051,101.6881093,'ChIJdcjPU1VJzDEROvxgbK7uN54','An easy station-side stop at Platinum Sentral.'],
+  ['Ghostbird Coffee Roastery',0,'Seputeh','Roaster',3.1136865,101.6794279,'https://www.google.com/maps/place/Ghostbird+Coffee+Roastery/data=!4m6!3m5!1s0x31cc498a3b9419c9:0xbaa40810e36aaafa!8m2!3d3.1136865!4d101.6794279!16s%2Fg%2F11gf1ztxtx','A house-roasting stop in a bungalow on Jalan Seputeh.'],
+  ['Transparent Coffee',0,'Kampung Attap','Specialty coffee',3.138703,101.6974753,'https://www.google.com/maps/place/Transparent+Coffee/data=!4m6!3m5!1s0x31cc498351f9ca7b:0x37a7d0f578f06b0e!8m2!3d3.138703!4d101.6974753!16s%2Fg%2F11h2gph1q5','Look for the counter at Sam Mansion on Jalan Tuba.'],
+  ['Celsius Coffee · Tamarind Square',1,'Tamarind Square','Specialty coffee',2.9200081,101.6362354,'ChIJETTWywy3zTERvjCWZH7Zy5g','Look for unit K-05 on Level 3M. Celsius lists a straight espresso on its menu.'],
+  ['Mocca Café',1,'Tamarind Suites','Coffee shop',2.918759,101.6372055,'ChIJB7XYMl23zTERlDF7od2g6o4','The Tamarind Suites café lists espresso on its own site.'],
+  ['Soleh Coffee',1,'Glomac Cyberjaya','Coffee shop',2.927062,101.6557986,'ChIJiVY-DAC3zTER6ckQWSlT4z8','On Jalan GC 9 in the Glomac shoplots.'],
+  ['Neibour Coffee House',1,'Edusphere','Coffee shop',2.9324059,101.637654,'ChIJiVwOc5q3zTERVhp4Wx0IEB4','Find the counter at Atelier Centre in Edusphere.'],
+  ['Duer Café · Flagship',1,'Tamarind Square','Café',2.9207043,101.6360879,'ChIJT0YqXAC3zTERPE1K6d5ghXM','A separate stop in the Tamarind Square cluster.'],
+  ['Origin Blend',1,'Tamarind Square','Coffee shop',2.9204103,101.6363435,'ChIJWdubgD63zTERBZ3D02Fw2_A','A second Tamarind Square counter to try on the same visit.'],
+  ['BosCo Coffee',1,'Persiaran APEC','Coffee shop',2.9084698,101.6569164,'ChIJxT1A7sG3zTERgyCQ7OQcVqg','A coffee stop on the southern side of Cyberjaya.'],
+  ['Thirteen Café',1,'Cyberjaya southwest','Café',2.9004517,101.6310236,'ChIJHSpguXq3zTERac0AXBdkc0Q','A stop on the southwest edge of the Cyberjaya trail.'],
+  ['Koppiku · CoPlace 8',1,'Century Square','Coffee counter',2.926272,101.6613231,'ChIJJ-FnuBi3zTERzJfo2lEFQkU','Look for the kiosk in the open area at CoPlace 8.'],
+  ['Monjo Coffee',1,'Shaftsbury Square','Coffee shop',2.9233194,101.6615246,'https://www.google.com/maps/place/Monjo+Coffee/data=!4m6!3m5!1s0x31cdb6562a49b905:0xe8fe570ee64e623!8m2!3d2.9233194!4d101.6615246!16s%2Fg%2F11cp8xx_zp','A Shaftsbury Square stop for coffee and breakfast.'],
+  ['Alcea Tea & Coffee',1,'Tamarind Square','Coffee bar',2.9209548,101.6363589,'https://www.google.com/maps/place/Alcea+Tea+%26+Coffee/data=!4m6!3m5!1s0x31cdb798296bfb41:0xf85940887d53e85a!8m2!3d2.9209548!4d101.6363589!16s%2Fg%2F11h3v6tpmw','Find Alcea at A-03-06 in Tamarind Square. Ask which beans are on espresso.'],
+  ['Sekuali',1,'RekaScape','Food only',2.9087936,101.656915,'ChIJ0-lp-0e3zTERNW2wGhdGqqU','Sekuali lists RekaScape as food-only. Its Jalan Keramat branch serves specialty coffee.',true],
+  ['Celsius Coffee · Conezion',2,'IOI Resort City','Specialty coffee',2.966069,101.7204003,'ChIJTVCmQwDLzTERTDiESCln38Q','The Conezion branch, north of central Putrajaya.'],
+  ['Thinking Coffee PJH',2,'Presint 2','Coffee shop',2.9253043,101.6872423,'ChIJS3bkSui3zTERO71KFcgFBVY','Find the café in Block B of Suasana PJH on Jalan Tun Abdul Razak.'],
+  ['Min Coffee',2,'Putrajaya east','Coffee shop',2.9381363,101.7131566,'ChIJoeCf8ZrJzTER9w2NrYsP5Ks','A stop on the eastern side of the Putrajaya trail.'],
+  ['Sogno Coffee',2,'Presint Diplomatik','Coffee shop',2.9455381,101.7218148,'ChIJ1aLCLgDJzTERuvYX4_nuOWI','Pair this Diplomatic Precinct stop with DeMi Coffee nearby.'],
+  ['The Coffee Department · Presint 3',2,'Presint 3','Coffee shop',2.9186178,101.6837418,'ChIJr_uA-R-3zTER6Jeo4SDQc3M','The Perbadanan Putrajaya branch, near the civic core.'],
+  ['The Coffee Department · Presint 7',2,'Presint 7','Coffee shop',2.9273398,101.6730581,'ChIJy5BxChS3zTERPGb1NKUP4nY','The Institut Kanser Negara branch. Check access and opening hours before visiting.'],
+  ['DeMi Coffee',2,'Presint Diplomatik','Coffee shop',2.9448799,101.7235631,'ChIJF2H1EQDJzTERCzv_KUsEWi8','A coffee stop on the east side of the Diplomatic Precinct.'],
+  ['INaRA Kafe',2,'Ayer@8 · Presint 8','Café',2.9253258,101.6805139,'ChIJq-zmhaO3zTERaAkVIkmC9S8','A café on the Ayer@8 waterfront.'],
+  ['San Francisco Coffee · Ayer@8',2,'Ayer@8 · Presint 8','Coffee shop',2.925397,101.6801643,'ChIJX4lTmPC3zTERwD0LVOKILyw','The Ayer@8 branch puts coffee within a short walk of the lake.'],
+  ['Buar Café',2,'Presint 2','Café',2.9325473,101.690061,'ChIJZfi1BwC3zTERPk81Kn1WELc','Use the Buar Café listing for this stop in the civic district.'],
+  ['The Glasshopper',2,'Taman Botani · Presint 1','Café',2.9428046,101.6939184,'https://www.google.com/maps/place/The+Glasshopper/data=!4m6!3m5!1s0x31cdb78cfcb8311d:0xb3a68cd565cd10b4!8m2!3d2.9428046!4d101.6939184!16s%2Fg%2F11l59lqk7q','A Botanical Garden café to pair with a walk through Taman Botani.'],
+  ['% Arabica · Pavilion Kuala Lumpur',0,'Bukit Bintang','Specialty coffee',3.1488576,101.7128289,'ChIJI0znlgs3zDERYu1l4HA1-b0','Malaysia’s first % Arabica. Find it on Level 3 in Pavilion’s Connection precinct.'],
+  ['% Arabica · The Exchange TRX',0,'Tun Razak Exchange','Specialty coffee',3.14242,101.718939,'ChIJv0-83ZE3zDERJ8kv_jro_Zo','On the concourse at the MRT entrance, unit C.73.A.'],
+  ['% Arabica · The Gardens',0,'Mid Valley City','Specialty coffee',3.1188702,101.6760102,'ChIJR6AOXPFJzDER3gZxfJ_2IQ0','Look for the counter at lot FK-01 inside The Gardens Mall.'],
+  ['% Arabica · Pavilion Damansara Heights',0,'Bukit Damansara','Specialty coffee',3.1463947,101.6630515,'ChIJv34jw6JJzDERYdZqMwTeHxs','The cave-inspired store on Level 2, at lots 42 and 43.'],
+  ['% Arabica · The MET Towers',0,'Dutamas','Specialty coffee',3.1808065,101.6646316,'https://www.google.com/maps/place/%25+Arabica+Kuala+Lumpur+Menara+The+MET+Towers/data=!4m6!3m5!1s0x31cc49b4d09d6411:0x13e170aa83384d79!8m2!3d3.1808065!4d101.6646316!16s%2Fg%2F11l2wry6f1','Find the ground-floor bar at G.04, Menara The MET on Jalan Dutamas 2.'],
+  ['103 Coffee · Chow Kit',0,'Chow Kit','Roaster',3.1578542,101.7008101,'ChIJzaLr-d9JzDEREzzqo_2GZ4o','The Jalan Yap Ah Shak branch. Ask what the team is pulling on espresso.'],
+  ['103 Coffee · Sri Petaling',0,'Sri Petaling','Roaster',3.071225,101.6938816,'ChIJ1xUoRYhKzDERPrU49DsXGtk','The original 103 Coffee on Jalan Radin Bagus.'],
+  ['103 Coffee · Imbi',0,'Imbi · TRX','Roaster',3.1452308,101.7152924,'ChIJv3ZwkxA3zDER42eZwdeEy1Y','Find this stop at 13 Jalan Barat, off Jalan Imbi.'],
+  ['103 Coffee · The Waterfront',0,'Desa ParkCity','Roaster',3.1867227,101.6279625,'ChIJwYcoF5ZJzDERg_VgCrWWZr0','The Waterfront branch in Desa ParkCity, at unit FF03A-5.'],
+  ['Pucks Coffee',0,'Chinatown','Coffee bar',3.1435798,101.6969208,'ChIJuxnaEDVJzDER1NhAPQ4q9Yw','Find the entrance at the back of 180 Jalan Tun H S Lee.'],
+  ['OFFNIC Coffee · Petaling Street',0,'Chinatown','Specialty coffee',3.1429083,101.6963108,'ChIJv266F3BJzDER9EMNenH1liI','Ask what’s on single-origin espresso at this Jalan Tun H S Lee café.'],
+  ['One Half · Mont Kiara',0,'Mont Kiara','Specialty coffee',3.1724792,101.6486975,'https://maps.app.goo.gl/r2Qwu2TJCXebvhvK6','Look for One Half at steppes, on the lower ground level of 32 Jalan Kiara 3.'],
+  ['Bean Brothers · The LINC',0,'Jalan Tun Razak','Specialty coffee',3.1597101,101.7207967,'https://goo.gl/maps/ex678KPCRqF4SXvj8','Find the ground-floor coffee bar at G-1, The LINC KL.'],
+  ['Yew Yew Coffee · Chinatown',0,'Chinatown','Coffee bar',3.1434459,101.6987427,'ChIJA8icKRZJzDERqtZEwNZZL3Y','Head to the first floor of Bangunan Ka Yin on Jalan Sultan.'],
+  ['Artisan Roast · TTDI',0,'TTDI','Roaster',3.1487208,101.6301573,'ChIJx_HAQtZIzDERXpWARhOo1eU','The Lorong Datuk Sulaiman 7 café pairs its coffee with chocolate from Seniman Kakao.'],
+  ['Artisan Roast · Sentul',0,'Sentul','Roaster',3.1811314,101.6921082,'ChIJI3_uKQ5IzDERtDNrxN7t_BA','Find the café at G18 in the D7 complex on Jalan Sentul.'],
+  ['Kopenhagen Coffee · Kapas',0,'Bangsar','Roaster',3.1365471,101.6645126,'https://www.google.com/maps/dir/?api=1&destination=3.136547088623047%2C101.66451263427734','A café and roastery at B2-01 in Kapas Condominium.'],
+  ['Curio Coffee Roaster · Rivercity',0,'Jalan Ipoh','Roaster',3.1794658,101.6828595,'ChIJn8xMKChJzDERcSDlaRShHkk','Look for the rooftop café at Rivercity on Jalan Sultan Azlan Shah.'],
+  ['The Hub Coffee Roaster · OUG',0,'Taman OUG','Roaster',3.072317,101.67242,'ChIJW3X6HPhKzDER97Qb55FjWdM','The original OUG branch at 61 Jalan Hujan Rahmat 3.'],
+  ['Ra-Ft Coffee Roasters · Binjai 8',0,'KLCC','Roaster',3.158851,101.717638,'ChIJP0rPKNA3zDERPXdJrCl6Dr8','The ground-floor café at Binjai 8 on Lorong Binjai.'],
+  ['Sekuali Brew House · Keramat',0,'Keramat','Specialty coffee',3.1688076,101.7442618,'ChIJVYmi2kU3zDERGxODHumVM3A','Sekuali’s Jalan Keramat branch serves its specialty coffee menu.'],
+  ['The Botanist',1,'Tamarind Square','Coffee bar',2.9204675,101.6364782,'https://www.google.com/maps/place/The+Botanist/data=!4m6!3m5!1s0x31cdb7a829e947c1:0xbe5d69b7de60cda7!8m2!3d2.9204675!4d101.6364782!16s%2Fg%2F11h3brb8vx','The drinks menu includes a straight espresso and a Tropical Espresso.'],
+  ['DRE Coffee · Edusphere',1,'Edusphere','Coffee shop',2.9333464,101.6378793,'ChIJZf8NvGi3zTERFjPoPNO09RQ','Find the Atelier Centre café in Block D3 on Jalan Atelier 2.'],
+  ['Kopi Raso Café',1,'Masreca 19','Coffee shop',2.9012607,101.6288214,'ChIJt-ohM6m3zTERSPQOxzdxQ8g','A Masreca 19 stop with Americanos and espresso-based lattes.'],
+  ['Beanbrick',1,'Kanvas SOHO','Coffee counter',2.9134812,101.6549725,'ChIJAb6jnjS3zTERRGr9yxV8z1o','A small coffee and pastry counter at Kanvas SOHO.'],
+  ['Glaze Eatery',1,'Tamarind Square','Café',2.9210386,101.6361151,'ChIJbxNXWOq3zTER9tRKWWQCHAc','Find Glaze at A-03-03A in Tamarind Square.'],
+  ['Ninety Six Café',1,'Tamarind Square','Café',2.9191875,101.6365625,'https://www.google.com/maps/place/Ninety+Six+Cafe/data=!4m6!3m5!1s0x31cdb7002fdcb515:0x636bef31ed0004b2!8m2!3d2.9191875!4d101.6365625!16s%2Fg%2F11xnbrthf7','Find the café at E2-04-05 in Tamarind Square.'],
+  ['LatteTude · RekaScape',1,'RekaScape','Coffee shop',2.9085322,101.656894,'ChIJhwnAoui3zTERweETy8coBDA','Look for LatteTude at RekaScape on Persiaran APEC.'],
+  ['HWC Coffee · DPULZE',1,'DPULZE · Cyber 12','Coffee shop',2.92205,101.6509647,'https://www.google.com/maps/place/HWC+Coffee+-+DPULZE+Shopping+Centre/data=!4m6!3m5!1s0x31cdb70061997331:0xd19a14bbc52a3ccf!8m2!3d2.92205!4d101.6509647!16s%2Fg%2F11whdmb00l','The DPULZE branch is off Lingkaran Cyber Point Timur.'],
+  ['Pokok · IOI City Mall',2,'IOI City Mall','Café',2.9692698,101.7147894,'https://maps.app.goo.gl/kbneSQeFXaKGttrn6','The ground-floor café at GE-201 in IOI City Tower Two.'],
+  ['Dotty’s · IOI City Mall',2,'IOI City Mall','Café',2.9695004,101.7130088,'https://www.google.com/maps/place/Dotty%27s+IOI+City+Mall+Putrajaya/data=!4m6!3m5!1s0x31cdcb57ec9f147d:0x89dbc750daf85ce9!8m2!3d2.9695004!4d101.7130088!16s%2Fg%2F11m8nf99bk','Find the pastry and coffee bar at GE-3B on Symphony Walk.'],
+  ['Bask Bear Coffee · Presint 15',2,'Presint Diplomatik','Coffee shop',2.9449634,101.7229279,'https://goo.gl/maps/wqsuXqk7AWvvVPAu5','The Jalan Diplomatik branch at No. 65, on the ground floor.'],
+  ['ZUS Coffee · Presint 15',2,'Presint Diplomatik','Coffee shop',2.9448469,101.7225685,'https://goo.gl/maps/LWyKNHec3hn7GTRKA','Find this branch at No. 43 Jalan Diplomatik.'],
+  ['Toast Maker · Destina',2,'Presint 7','Café',2.930755,101.6719514,'ChIJGw3atUG3zTERfZgXX5BVu_k','An espresso-based coffee and toast stop at lot G-16, on the ground floor of Destina Putrajaya.'],
+  ['Lake Cabin · Anjung Floria',2,'Presint 4','Café',2.912578,101.67851,'ChIJF1q4AqO3zTERBDUmixXb6ck','A coffee stop at the Anjung Floria pit stop by the lake.'],
+  ['Coffee Three · Putrajaya Square',2,'Presint 3','Coffee shop',2.9173569,101.6840611,'ChIJBWeeXOm3zTERp1X09lxD43A','Find the counter at lot R9 in Kompleks Perbadanan Putrajaya.'],
+  ['Indus Putrajaya',2,'Marina Putrajaya · Presint 5','Café',2.9016316,101.6710676,'ChIJq5ikmaS3zTER9_tnUzAsRSA','A coffee and brunch stop on the waterfront at Marina Putrajaya.'],
+].map(([name, city, area, kind, lat, lng, id, note, trailOnly = false], index) => ({
+  name, city: cities[city], area, kind, lat, lng, id, note, trailOnly,
+  no: String(index + 1).padStart(2,'0'),
+  url: id.startsWith('https:') ? id : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name + ' ' + cities[city]) + '&query_place_id=' + id
+}));
+
+// A compact, schematic basemap traced from OpenStreetMap. The relief and city
+// silhouettes are illustrative. Café positions come from their place listings.
+const origin = [101.675, 3.04];
+const world = (lng, lat) => [(lng - origin[0]) * 111, (origin[1] - lat) * 111];
+const fromTrace = (points, lng, lat, degreePerPixel) =>
+  points.map(([x,y]) => world(lng + (x - 640) * degreePerPixel, lat - (y - 388) * degreePerPixel));
+const regionalTrace = points => fromTrace(points,101.68,3.04,360 / 524288);
+const lakeTrace = points => fromTrace(points,101.689,2.923,360 / 2097152);
+const slab = [[-23,-22],[-18,-25],[12,-25],[24,-17],[24,12],[17,22],[4,25],[-18,23],[-24,17],[-24,-13]];
+const highways = [
+  [[403,56],[420,100],[493,155],[501,201],[517,225],[523,258],[501,291],[475,305],[436,309],[375,312],[350,325]],
+  [[465,60],[491,104],[490,151],[520,163],[549,162],[573,177],[615,167],[640,173],[668,172],[690,179],[721,175],[747,185],[755,201],[746,227],[768,244],[787,244],[819,219],[836,246],[841,290]],
+  [[388,217],[422,210],[445,222],[472,227],[504,214],[550,208],[581,207],[612,196],[647,190],[682,205],[717,208],[750,211]],
+  [[528,358],[551,358],[567,343],[590,342],[612,326],[641,327],[664,322],[685,302],[709,279],[726,263],[736,239],[739,223]],
+  [[491,460],[491,430],[484,403],[473,378],[474,353],[487,333],[503,321],[523,320],[543,324],[566,324],[592,323],[615,309],[624,284],[612,268],[599,250],[604,223],[615,207],[620,182],[613,161],[618,135],[627,116],[622,85],[622,57]],
+  [[411,556],[473,535],[525,531],[550,521],[557,498],[581,479],[609,478],[649,483],[693,479],[726,472],[758,472],[789,489],[811,478],[839,477],[865,464]],
+  [[497,392],[538,395],[545,414],[543,449],[556,467],[581,478],[596,491],[589,518],[569,533],[562,560],[573,582],[599,601],[611,632],[610,673],[629,716]],
+  [[650,480],[646,454],[650,431],[649,407],[653,385],[657,360],[650,335],[657,311],[669,288],[685,271],[696,253],[693,226],[681,211]],
+  [[515,529],[535,570],[550,606],[576,634],[608,655],[634,666],[665,660],[692,677],[720,664],[749,657],[780,663],[797,670],[821,659],[842,654],[865,659],[891,670]],
+  [[684,322],[692,345],[690,368],[695,398],[708,420],[716,440],[731,456],[737,478],[746,504],[747,535],[761,554],[782,586],[792,613],[794,641],[800,673],[799,709]],
+  [[674,337],[713,321],[746,326],[775,321],[801,308],[827,308],[839,324],[840,352],[833,377],[835,398],[845,411],[835,429],[851,444],[863,463],[866,488],[850,508],[845,534],[852,554],[861,582],[856,604],[858,629],[864,657],[862,682],[873,716]],
+  [[704,407],[725,403],[751,401],[773,390],[798,393],[820,400],[836,412]],
+].map(regionalTrace);
+const connectors = [
+  [[417,256],[460,274],[490,264],[518,259],[547,262],[568,254],[590,257],[615,255],[644,251],[677,242],[711,247],[747,243]],
+  [[527,302],[548,283],[572,279],[597,274],[621,271],[647,267],[665,260],[693,261],[724,278],[755,286],[778,270]],
+  [[502,366],[529,369],[565,365],[599,365],[619,377],[641,379],[659,369],[685,375],[703,390]],
+  [[547,428],[578,433],[609,424],[635,427],[655,423],[676,427],[699,447],[727,452]],
+  [[546,513],[574,510],[601,509],[634,510],[662,514],[700,510],[726,507],[750,509],[778,518]],
+  [[556,550],[577,551],[600,560],[626,557],[650,553],[671,561],[691,553],[722,558],[754,556]],
+  [[583,582],[604,574],[630,574],[658,585],[677,574],[700,578],[727,585],[759,585]],
+  [[645,149],[641,173],[643,199],[640,231],[630,251],[629,282],[631,301],[637,330],[633,355],[630,383]],
+  [[690,144],[680,167],[681,201],[684,228],[669,249],[671,276],[673,298],[684,323],[682,350]],
+  [[740,163],[756,152],[780,156],[803,158],[831,178],[854,189],[886,181]],
+  [[512,140],[553,132],[596,141],[635,136],[671,144],[705,133],[742,137],[774,145]],
+].map(regionalTrace);
+const putrajayaRoads = [
+  [[487,273],[528,252],[559,260],[590,235],[613,200],[632,190],[674,191],[710,196],[748,178],[772,184],[789,206],[785,239],[797,275],[789,314],[769,340],[739,355],[724,374],[713,412],[706,447],[681,470],[649,478],[615,460],[598,470],[584,507],[569,535],[526,546],[485,538],[470,524]],
+  [[553,416],[561,389],[561,355],[573,325],[585,299],[599,275],[612,250],[626,225],[645,212],[665,213],[685,232],[706,252],[725,269]],
+  [[491,351],[517,357],[546,373],[566,402],[590,423],[620,432],[648,430],[683,414],[716,402]],
+  [[588,508],[606,470],[619,434],[633,399],[642,359],[653,317]],
+  [[484,555],[510,578],[535,593],[567,596],[609,586],[644,568],[670,555],[706,558],[747,546],[785,528],[806,503],[796,466],[789,425],[769,384],[755,349]],
+].map(lakeTrace);
+const lakes = [
+  [[627,276],[638,255],[654,241],[661,220],[680,220],[678,235],[691,238],[696,250],[682,256],[675,276],[670,294],[661,304],[643,308],[635,324],[643,336],[631,353],[624,373],[617,383],[610,378],[600,400],[596,416],[584,431],[576,420],[583,403],[585,382],[599,370],[601,347],[613,326],[618,306]],
+  [[589,432],[586,452],[576,468],[570,484],[567,507],[552,515],[528,508],[514,496],[496,486],[496,474],[509,466],[526,460],[544,447],[552,429],[562,425],[569,433],[562,448],[568,451],[578,432]],
+  [[613,517],[629,507],[642,505],[644,497],[638,485],[648,475],[658,468],[660,458],[682,449],[696,440],[698,449],[686,462],[672,469],[664,480],[651,489],[656,504],[649,517],[632,525],[616,527]],
+  [[700,334],[715,331],[724,318],[739,313],[753,315],[749,323],[735,326],[730,339],[712,341]],
+  [[568,561],[579,554],[591,562],[589,574],[578,579],[566,570]],
+].map(lakeTrace);
+const river = regionalTrace([[575,61],[569,89],[583,110],[599,119],[611,144],[606,164],[613,193],[629,215],[636,229],[645,243],[648,259],[633,275],[620,280],[607,292],[588,297],[563,305],[541,310],[508,303],[487,299],[470,285],[445,291],[417,286],[385,299],[350,296]]);
+const landmarks = [
+  [101.71165,3.15788,'Petronas Twin Towers','twin'],
+  [101.70378,3.15280,'KL Tower','spire'],
+  [101.70066,3.14187,'Merdeka 118','merdeka'],
+  [101.68878,2.93605,'Putra Mosque','mosque'],
+].map(([lng,lat,label,type]) => ({xy:world(lng,lat),label,type}));
+const cityLabels = [
+  {name:'Kuala Lumpur', xy:world(101.715,3.175), direction:1, num:'01'},
+  {name:'Cyberjaya', xy:world(101.612,2.923), direction:-1, num:'02'},
+  {name:'Putrajaya', xy:world(101.755,2.897), direction:1, num:'03'},
+];
+const terrain = (x,y) => {
+  const hill = (a,b,rx,ry,h) => h * Math.exp(-(((x-a)/rx)**2 + ((y-b)/ry)**2));
+  const ridge = hill(15,-15,6,12,3.0) + hill(19,0,5,13,1.8) + hill(-16,1,5,5,1.2)
+    + hill(-10,-15,7,9,.75) + hill(-20,14,4,8,.48) + hill(5,20,7,5,.55);
+  return .065 + ridge * (.89 + .10 * Math.sin(x*1.64+y*.7) + .1 * Math.cos(y*1.24-x*.75));
+};
+const rng = (() => {
+  let value = 335641;
+  return () => ((value = (Math.imul(value,1664525) + 1013904223) >>> 0) / 4294967296);
+})();
+const cityBlocks = [];
+function addBlocks(lng,lat,count,sx,sy,maxHeight) {
+  const [cx,cy] = world(lng,lat);
+  for (let i=0;i<count;i++) {
+    const angle = rng()*Math.PI*2;
+    const range = Math.sqrt(rng());
+    const x = cx + Math.cos(angle)*range*sx;
+    const y = cy + Math.sin(angle)*range*sy;
+    if (landmarks.some(m => Math.hypot(m.xy[0]-x,m.xy[1]-y) < .43)) continue;
+    const footprint = .095 + rng()*.27;
+    cityBlocks.push({x,y,w:footprint,d:footprint*(.6+rng()*.9),h:.05+maxHeight*(1-range*.75)*rng()**2});
+  }
+}
+addBlocks(101.699,3.151,370,8.2,6.7,1.18);
+addBlocks(101.663,3.12,185,10,8.3,.67);
+addBlocks(101.707,3.085,134,8.5,8,.61);
+addBlocks(101.65,2.921,88,3.5,2.0,.44);
+addBlocks(101.701,2.939,100,4.6,2.4,.37);
+addBlocks(101.64,3.005,126,8,5,.4);
+for (const {xy:[x,y],type} of landmarks) {
+  if (type==='twin') {
+    for (const offset of [-.21,.21]) {
+      cityBlocks.push({x:x+offset,y,w:.30,d:.38,h:2.02,hero:true,cap:.51});
+      cityBlocks.push({x:x+offset,y,w:.22,d:.24,h:2.26,start:2.02,hero:true,cap:.29});
+    }
+    cityBlocks.push({x,y,w:.45,d:.085,h:1.12,start:1.03,hero:true});
+  } else if (type==='spire') {
+    cityBlocks.push({x,y,w:.11,d:.13,h:1.67,hero:true,cap:.47});
+    cityBlocks.push({x,y,w:.32,d:.30,h:1.68,start:1.48,hero:true});
+  } else if (type==='merdeka') {
+    cityBlocks.push({x,y,w:.31,d:.35,h:2.17,hero:true,cap:.69});
+    cityBlocks.push({x,y,w:.23,d:.25,h:2.33,start:2.17,hero:true});
+  } else {
+    cityBlocks.push({x,y,w:.26,d:.26,h:.39,hero:true,cap:.19});
+    cityBlocks.push({x:x-.22,y:y+.14,w:.08,d:.08,h:.70,hero:true,cap:.18});
+  }
+}
+
+const canvas = document.querySelector('#map');
+const ctx = canvas.getContext('2d',{alpha:false});
+const view = {x:0,y:0,zoom:1,angle:.58,mode:'3d'};
+let width=1, height=1, dpr=1, baseScale=1, repaint=0;
+let groups = [];
+let pinSignature = '';
+const shadeCache = new Map();
+const scale = () => view.zoom * baseScale;
+const pivot = () => [width*.5,height*(width<600 ? .407 : .445)];
+function rotated(x,y) {
+  const c=Math.cos(view.angle), s=Math.sin(view.angle);
+  return [x*c-y*s,x*s+y*c];
+}
+function projection(x,y,z=0) {
+  const [u,v] = rotated(x-view.x,y-view.y);
+  const [ox,oy] = pivot();
+  return view.mode==='3d' ? [ox+u*scale(),oy+(v*.61-z*.79)*scale()] : [ox+u*scale(),oy+v*scale()];
+}
+function screenToWorld(px,py) {
+  const [ox,oy] = pivot();
+  const dx = (px-ox)/scale();
+  const dy = (py-oy)/(scale()*(view.mode==='3d'?.61:1));
+  const c=Math.cos(view.angle), s=Math.sin(view.angle);
+  return [view.x+dx*c+dy*s,view.y-dx*s+dy*c];
+}
+function poly(points,fill,stroke,lineWidth=1) {
+  if (points.length<2) return;
+  ctx.beginPath();
+  points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+  if (fill) {ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
+  if (stroke) {ctx.strokeStyle=stroke;ctx.lineWidth=lineWidth;ctx.stroke();}
+}
+const ground = (x,y) => projection(x,y,view.mode==='3d' ? terrain(x,y):0);
+const mesh = [];
+for (let y=-27;y<26;y+=.88) for (let x=-25;x<25;x+=.88) {
+  const a=[x,y,terrain(x,y)], b=[x+.88,y,terrain(x+.88,y)];
+  const c=[x+.88,y+.88,terrain(x+.88,y+.88)], d=[x,y+.88,terrain(x,y+.88)];
+  const tone = (p,q,r) => {
+    const level = (p[2]+q[2]+r[2])/3;
+    return Math.round(24 + level*5 + (p[2]-r[2])*20 + rng()*6);
+  };
+  mesh.push([a,b,d,tone(a,b,d)],[b,c,d,tone(b,c,d)]);
+}
+function terrainColor(shade) {
+  if (!shadeCache.has(shade)) shadeCache.set(shade,`rgb(${shade+1},${shade},${shade+7})`);
+  return shadeCache.get(shade);
+}
+function drawBackground() {
+  const halo=ctx.createRadialGradient(width*.53,height*.40,0,width*.53,height*.46,Math.max(width,height)*.71);
+  halo.addColorStop(0,'#211923'); halo.addColorStop(.62,'#110e15'); halo.addColorStop(1,'#09080b');
+  ctx.fillStyle=halo;ctx.fillRect(0,0,width,height);
+  if(view.mode==='3d') {
+    for(let i=-100;i<=100;i+=4){
+      const color=i%20===0?'#51425055':'#493d4c33';
+      poly([projection(-100,i,-1.8),projection(100,i,-1.8)],null,color,.8);
+      poly([projection(i,-100,-1.8),projection(i,100,-1.8)],null,color,.8);
+    }
+  }
+}
+function drawGlassSides(outline) {
+  const bottom = slab.map(([x,y])=>projection(x,y,-1.65));
+  ctx.save();
+  ctx.lineJoin='round';
+  ctx.shadowColor='#f74b0190';
+  ctx.shadowBlur=16*dpr;
+  poly(bottom,'#09070b38','#f74b014c',1.3);
+  ctx.restore();
+
+  for (let i=0;i<outline.length;i++) {
+    const j=(i+1)%outline.length;
+    const [x,y]=outline[i], [nextX,nextY]=outline[j];
+    const dx=nextX-x, dy=nextY-y;
+    if (dx>=0) continue;
+    const depth=((bottom[i][1]-y)+(bottom[j][1]-nextY))/2;
+    const normalScale=dx*depth/(dx*dx+dy*dy);
+    const midX=(x+nextX)/2, midY=(y+nextY)/2;
+    // Shade across the thickness of the glass, perpendicular to each edge.
+    const tint=ctx.createLinearGradient(midX,midY,midX-dy*normalScale,midY+dx*normalScale);
+    tint.addColorStop(0,'#a29da955');
+    tint.addColorStop(.26,'#3a323e9c');
+    tint.addColorStop(.77,'#151017a0');
+    tint.addColorStop(1,'#74311881');
+    poly([outline[i],outline[j],bottom[j],bottom[i]],tint);
+    poly([bottom[i],bottom[j]],null,'#e66a365d',.9);
+  }
+}
+function drawLand() {
+  const outline=slab.map(([x,y])=>ground(x,y));
+  const isGlass=view.mode==='3d';
+  const slabX=outline.map(p=>p[0]), slabY=outline.map(p=>p[1]);
+  const minX=Math.min(...slabX), maxX=Math.max(...slabX);
+  const minY=Math.min(...slabY), maxY=Math.max(...slabY);
+  if (isGlass) drawGlassSides(outline);
+
+  ctx.save();
+  ctx.beginPath();outline.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.clip();
+  if (isGlass) {
+    const smoke=ctx.createLinearGradient(minX,minY,maxX,maxY);
+    smoke.addColorStop(0,'#54525da6');
+    smoke.addColorStop(.45,'#282530aa');
+    smoke.addColorStop(1,'#17131bc9');
+    ctx.fillStyle=smoke;
+    ctx.fillRect(minX,minY,maxX-minX,maxY-minY);
+    ctx.globalAlpha=.48;
+  }
+  const bounds = [[0,0],[width,0],[0,height],[width,height]].map(p=>screenToWorld(...p));
+  const xs=bounds.map(p=>p[0]), ys=bounds.map(p=>p[1]);
+  const left=Math.min(...xs)-6, right=Math.max(...xs)+6, top=Math.min(...ys)-6, bottom=Math.max(...ys)+6;
+  for (const [a,b,c,tone] of mesh) {
+    if (a[0]<left||a[0]>right||a[1]<top||a[1]>bottom) continue;
+    const points=[a,b,c].map(([x,y,z])=>projection(x,y,isGlass?z:0));
+    const color=terrainColor(tone);
+    poly(points,color,isGlass?null:color,.75);
+  }
+  if (isGlass) {
+    ctx.globalAlpha=1;
+    const sheen=ctx.createLinearGradient(minX,maxY,maxX,minY);
+    sheen.addColorStop(0,'#cbcfd200');
+    sheen.addColorStop(.32,'#cbcfd209');
+    sheen.addColorStop(.53,'#cbcfd226');
+    sheen.addColorStop(.72,'#cbcfd204');
+    sheen.addColorStop(1,'#cbcfd218');
+    ctx.fillStyle=sheen;
+    ctx.fillRect(minX,minY,maxX-minX,maxY-minY);
+    ctx.lineJoin='round';
+    for (let y=-24;y<=24;y+=1.55) {
+      const ridge=[];
+      for(let x=-24;x<25;x+=.65) ridge.push(ground(x,y));
+      poly(ridge,null,'#bfb1c21c',.6);
+    }
+  }
+  for (const shape of lakes) {
+    const shapePoints=shape.map(p=>ground(...p));
+    poly([...shapePoints,shapePoints[0]],'#101b24','#617583',1.1);
+  }
+  poly(river.map(p=>ground(...p)),null,'#425867',1.25);
+  ctx.lineJoin='round';ctx.lineCap='round';
+  for(const street of connectors) poly(street.map(p=>ground(...p)),null,'#92889569',Math.min(1.3,.60+view.zoom*.1));
+  for(const street of putrajayaRoads) poly(street.map(p=>ground(...p)),null,'#b2a3a17a',Math.min(1.65,.7+view.zoom*.15));
+  for(const street of highways) {
+    const path=street.map(p=>ground(...p));
+    poly(path,null,isGlass?'#171319ba':'#171319',2.55);
+    poly(path,null,isGlass?'#b9b4c294':'#aaa0ae83',Math.min(1.65,.85+view.zoom*.11));
+  }
+  ctx.restore();
+  const rim=[...outline,outline[0]];
+  if (isGlass) {
+    const edge=ctx.createLinearGradient(minX,maxY,maxX,minY);
+    edge.addColorStop(0,'#f87845d4');
+    edge.addColorStop(.34,'#d66b4498');
+    edge.addColorStop(.64,'#a98c959b');
+    edge.addColorStop(1,'#f08a67ad');
+    ctx.save();
+    ctx.lineJoin='round';
+    ctx.shadowColor='#f74b01a0';
+    ctx.shadowBlur=11*dpr;
+    poly(rim,null,edge,1.3);
+    ctx.restore();
+  } else poly(rim,null,'#766776',1.15);
+}
+function drawBuildings() {
+  if (view.mode!=='3d') return;
+  const ordered=cityBlocks.map(b=>[b,rotated(b.x,b.y)[1]]).sort((a,b)=>a[1]-b[1]);
+  for(const [b] of ordered) {
+    const {x,y,w,d,h,hero,start=0,cap=0}=b;
+    const base=terrain(x,y);
+    const corners=[[x-w/2,y-d/2],[x+w/2,y-d/2],[x+w/2,y+d/2],[x-w/2,y+d/2]];
+    const top=corners.map(p=>projection(...p,base+h));
+    const low=corners.map(p=>projection(...p,base+start));
+    const faces=corners.map(([cx,cy],i)=>({i, depth:rotated((cx+corners[(i+1)%4][0])/2,(cy+corners[(i+1)%4][1])/2)[1]}));
+    for (const {i} of faces.sort((a,b)=>a.depth-b.depth)) {
+      const j=(i+1)%4;
+      poly([top[i],top[j],low[j],low[i]],hero?(i%2?'#a39396':'#66575f'):(i%2?'#4b424e':'#34303b'),hero?'#b4a0a1':null,.45);
+    }
+    poly(top,hero?'#e6d9d7':'#665d6b',hero?'#e6d9d7':null,.5);
+    if (cap) poly([projection(x,y,base+h),projection(x,y,base+h+cap)],null,'#f9dad0',1);
+  }
+}
+function drawCompass() {
+  const x=width-43,y=100,r=19;
+  if(width<420) return;
+  const [nx,ny]=rotated(0,-1);
+  const a=Math.atan2(ny*(view.mode==='3d'?.61:1),nx);
+  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.strokeStyle='#7d6e7d87';ctx.lineWidth=1;ctx.stroke();
+  ctx.save();ctx.translate(x,y);ctx.rotate(a);
+  poly([[11,0],[-5,3.5],[-2,0],[-5,-3.5]],'#f77542');
+  ctx.restore();
+  ctx.font='10px ui-monospace, monospace';ctx.fillStyle='#bbb1bc';ctx.textAlign='center';ctx.fillText('N',x,y+r+15);
+}
+function drawLabels() {
+  const visible = cityLabels.filter(l=>state.city==='all'||state.city===l.name);
+  for(const {xy,name,direction,num} of visible) {
+    const [x,y]=ground(...xy);
+    const offset=direction*(width<600?7:14);
+    const lx=x+offset, ly=y-14;
+    const size=width<500?13:16;
+    ctx.textAlign=direction<0?'right':'left';
+    ctx.font=`750 ${size}px "Helvetica Neue",Arial,sans-serif`;
+    const length=ctx.measureText(name).width;
+    if(lx+(direction<0?-length:0)<8||lx+(direction>0?length:0)>width-8||ly<63||ly>height-58) continue;
+    ctx.lineWidth=4;ctx.strokeStyle='#161018';ctx.strokeText(name,lx,ly);
+    ctx.fillStyle='#ded7df';ctx.fillText(name,lx,ly);
+    ctx.font='600 8px ui-monospace, monospace';ctx.fillStyle='#ff8c66';ctx.fillText(num,lx,ly-17);
+    poly([[x,y],[lx,y-9]],null,'#d5806a89',.9);
+  }
+  if (view.zoom>3.4 && view.mode==='3d') {
+    ctx.textAlign='left';ctx.font='600 9px ui-monospace, monospace';
+    for (const {xy,label,type} of landmarks) {
+      const labelHeight=type==='mosque'?.9:type==='spire'?2.2:2.85;
+      const [x,y]=projection(...xy,terrain(...xy)+labelHeight);
+      ctx.lineWidth=3;ctx.strokeStyle='#130e17';ctx.strokeText(label,x+5,y-3);
+      ctx.fillStyle='#c7b7c7';ctx.fillText(label,x+5,y-3);
+    }
+  }
+}
+function drawScale() {
+  const available=width<520?64:100;
+  const km=[.1,.2,.5,1,2,5,10,20].filter(k=>k*scale()<=available).at(-1) || .1;
+  const x=width<520?width-available-16:width-available-34;
+  const y=width<520?77:height-52;
+  const end=x+km*scale();
+  ctx.font='600 9px ui-monospace, monospace';ctx.textAlign='left';ctx.fillStyle='#bdb2c0';
+  ctx.fillText(km<1?`${km*1000} m`:`${km} km`,x,y-6);
+  poly([[x,y-3],[x,y],[end,y],[end,y-3]],null,'#bdb2c0',1);
+}
+function renderMap() {
+  repaint=0;
+  if (canvas.hidden) return;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  drawBackground(); drawLand(); drawBuildings(); drawLabels(); drawCompass(); drawScale(); renderPins();
+}
+function requestPaint() {
+  if(!repaint) repaint=requestAnimationFrame(renderMap);
+}
+function resize() {
+  if (canvas.hidden) return;
+  const box=canvas.getBoundingClientRect();
+  width=box.width; height=box.height; dpr=Math.min(devicePixelRatio||1,2);
+  canvas.width=Math.max(1,Math.round(width*dpr)); canvas.height=Math.max(1,Math.round(height*dpr));
+  baseScale=Math.min((width-26)/57,(height-140)/38);
+  baseScale=Math.max(3,baseScale);
+  requestPaint();
+}
+function fitCafes() {
+  const list=visibleCafes();
+  if(state.city==='all' && !state.query && !state.trail || !list.length) {
+    Object.assign(view,{x:0,y:0,zoom:view.mode==='3d'?1:.97});
+  } else {
+    const rotatedPoints=list.map(c=>rotated(...world(c.lng,c.lat)));
+    const us=rotatedPoints.map(p=>p[0]), vs=rotatedPoints.map(p=>p[1]);
+    const a=Math.min(...us), b=Math.max(...us), c=Math.min(...vs), d=Math.max(...vs);
+    const u=(a+b)/2, v=(c+d)/2, cos=Math.cos(view.angle), sin=Math.sin(view.angle);
+    view.x=u*cos+v*sin;
+    view.y=v*cos-u*sin;
+    const span=Math.max(7,b-a);
+    const tall=Math.max(5,(d-c)*(view.mode==='3d'?.61:1));
+    view.zoom=Math.min(5,Math.max(1,Math.min((width-115)/(span*baseScale),(height-210)/(tall*baseScale))));
+  }
+  requestPaint();
+}
+function zoomMap(factor,px,py) {
+  const next=Math.max(.65,Math.min(14,view.zoom*factor));
+  if(px!==undefined) {
+    const target=screenToWorld(px,py);
+    view.zoom=next;
+    const actual=screenToWorld(px,py);
+    view.x+=target[0]-actual[0];view.y+=target[1]-actual[1];
+  } else view.zoom=next;
+  requestPaint();
+}
+function pointMap(cafe,amount=0) {
+  const [x,y]=world(cafe.lng,cafe.lat);
+  view.x=x;view.y=y;view.zoom=Math.max(amount,view.zoom);requestPaint();
+}
+
+// The Google SDK is loaded only after the user submits a key in the online view.
+const googleHost = document.querySelector('#google-map-host');
+const googleSetup = document.querySelector('#google-map-setup');
+const googleKeyField = document.querySelector('#google-map-key');
+const googleSubmit = document.querySelector('#google-map-submit');
+const googleMessage = document.querySelector('#google-map-message');
+const googleMarkers = new Map();
+let googleRequested = false;
+let googleConnecting = false;
+let googleReloadMessage = '';
+let googleSdk = null;
+let googleScene = null;
+let cancelGoogleMount = null;
+
+function showGoogleSetup(message = '') {
+  googleSetup.hidden = false;
+  googleKeyField.hidden = googleKeyField.disabled = googleConnecting || !!googleSdk || !!googleReloadMessage;
+  googleSetup.querySelector('label').hidden = googleKeyField.hidden;
+  googleSubmit.disabled = googleConnecting;
+  googleSubmit.textContent = googleConnecting ? 'Connecting…'
+    : googleReloadMessage ? 'Reload NearPresso'
+    : googleSdk ? 'Try again' : 'Load Google map';
+  googleMessage.textContent = message;
+}
+
+function setGoogleVisible(visible) {
+  canvas.hidden = pins.hidden = visible;
+  googleHost.hidden = !visible;
+  googleHost.classList.remove('loading');
+  mapSection.classList.toggle('google-mode', visible);
+  if (!visible) resize();
+}
+
+function googleAuthError() {
+  const help = location.protocol === 'file:'
+    ? 'Use a Maps Demo Key or open NearPresso through a website allowed by your key.'
+    : 'Check that your key allows this website and the Maps JavaScript API.';
+  return new Error('Google rejected the key. ' + help);
+}
+
+function loadGoogleSdk(key) {
+  if (googleSdk) return googleSdk;
+  googleSdk = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    const url = new URL('https://maps.googleapis.com/maps/api/js');
+    url.search = new URLSearchParams({
+      key, v:'weekly', loading:'async', libraries:'maps3d', callback:'nearPressoGoogleReady'
+    });
+    let scriptRan = false;
+    let settled = false;
+    const fail = message => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(deadline);
+      script.remove();
+      // A loaded SDK keeps its original key for the lifetime of this page.
+      if (scriptRan) googleReloadMessage = message;
+      else googleSdk = null;
+      reject(new Error(message));
+    };
+    const deadline = setTimeout(() => fail('Google Maps took too long to respond. Check your connection and try again.'), 15000);
+    window.nearPressoGoogleReady = async () => {
+      if (settled) return;
+      scriptRan = true;
+      try {
+        const library = await google.maps.importLibrary('maps3d');
+        if (!library.Map3DElement || !library.MarkerInteractiveElement) {
+          throw new Error('Missing 3D Maps classes');
+        }
+        if (!settled) {
+          settled = true;
+          clearTimeout(deadline);
+          resolve(library);
+        }
+      } catch {
+        fail('Google’s 3D Maps library could not start. Reload NearPresso to try again.');
+      }
+    };
+    window.gm_authFailure = () => {
+      const error = googleAuthError();
+      googleReloadMessage = error.message;
+      settled = true;
+      clearTimeout(deadline);
+      reject(error);
+      if (cancelGoogleMount) cancelGoogleMount(error);
+      else if (googleScene) failGoogleScene(error);
+    };
+    script.src = url.href;
+    script.async = true;
+    script.onerror = () => fail('Google Maps could not load. Check your connection and try again.');
+    document.head.append(script);
+  });
+  return googleSdk;
+}
+
+function googleCameraFor(list) {
+  const latitudes = list.map(cafe => cafe.lat);
+  const longitudes = list.map(cafe => cafe.lng);
+  const south = Math.min(...latitudes), north = Math.max(...latitudes);
+  const west = Math.min(...longitudes), east = Math.max(...longitudes);
+  const span = Math.max(north - south, east - west) * 111000;
+  return {
+    center: {lat:(south + north) / 2, lng:(west + east) / 2, altitude:0},
+    range: Math.max(2200, span * 2.45)
+  };
+}
+
+function moveGoogleTo(cafe) {
+  if (!googleScene) return;
+  googleScene.map.center = {lat:cafe.lat, lng:cafe.lng, altitude:0};
+  googleScene.map.range = 3200;
+}
+
+function fitGoogleCafes(list = visibleCafes()) {
+  if (googleScene) Object.assign(googleScene.map, googleCameraFor(list.length ? list : cafes));
+}
+
+function renderGooglePins(list) {
+  if (!googleScene) return;
+  const {map, MarkerInteractiveElement} = googleScene;
+  const visible = new Set(list.map(cafe => cafe.id));
+  for (const [id, marker] of googleMarkers) {
+    if (visible.has(id)) continue;
+    marker.remove();
+    googleMarkers.delete(id);
+  }
+  for (const cafe of list) {
+    let marker = googleMarkers.get(cafe.id);
+    if (!marker) {
+      marker = new MarkerInteractiveElement({
+        position:{lat:cafe.lat, lng:cafe.lng},
+        title:cafe.name,
+        anchorLeft:'-50%',
+        anchorTop:'-50%',
+        collisionBehavior:'OPTIONAL_AND_HIDES_LOWER_PRIORITY'
+      });
+      const pin = document.createElement('span');
+      pin.className = 'map-pin single google-pin';
+      pin.innerHTML = espressoPinIcon;
+      marker.append(pin);
+      marker.addEventListener('gmp-click', () => openCafe(cafe, {move:false}));
+      map.append(marker);
+      googleMarkers.set(cafe.id, marker);
+    }
+    const current = cafe.id === state.selected;
+    marker.firstElementChild.classList.toggle('current', current);
+    marker.collisionPriority = current ? 10 : 0;
+    marker.setAttribute('aria-pressed', String(current));
+  }
+}
+
+function mountGoogleMap(map) {
+  return new Promise((resolve, reject) => {
+    const finish = error => {
+      clearTimeout(deadline);
+      map.removeEventListener('gmp-steadychange', onSteady);
+      map.removeEventListener('gmp-error', onError);
+      cancelGoogleMount = null;
+      if (error) reject(error);
+      else resolve();
+    };
+    const onSteady = event => {
+      if (event.isSteady) finish();
+    };
+    const onError = () => finish(new Error('Google’s 3D map could not start on this device.'));
+    const deadline = setTimeout(() => finish(new Error('The Google map took too long to render. You can retry or use the offline atlas.')), 25000);
+    cancelGoogleMount = finish;
+    map.addEventListener('gmp-steadychange', onSteady);
+    map.addEventListener('gmp-error', onError);
+    googleHost.classList.add('loading');
+    googleHost.hidden = false;
+    googleHost.replaceChildren(map);
+  });
+}
+
+function failGoogleScene(error) {
+  googleScene = null;
+  googleMarkers.clear();
+  googleHost.replaceChildren();
+  setGoogleVisible(false);
+  if (googleRequested) showGoogleSetup(error.message);
+}
+
+function revealGoogleScene() {
+  googleSetup.hidden = true;
+  setGoogleVisible(true);
+  update();
+}
+
+async function connectGoogle(key) {
+  if (googleConnecting) return;
+  googleConnecting = true;
+  showGoogleSetup('Loading Google’s dark 3D map…');
+  try {
+    const {Map3DElement, MarkerInteractiveElement} = await loadGoogleSdk(key);
+    if (!googleRequested) return;
+    if (googleReloadMessage) throw new Error(googleReloadMessage);
+    const list = visibleCafes();
+    const cafe = selected();
+    const camera = cafe
+      ? {center:{lat:cafe.lat, lng:cafe.lng, altitude:0}, range:3200}
+      : googleCameraFor(list.length ? list : cafes);
+    const map = new Map3DElement({
+      ...camera,
+      mode:'ROADMAP',
+      colorScheme:'DARK',
+      tilt:55,
+      heading:330,
+      gestureHandling:'COOPERATIVE',
+      description:'Dark Google 3D map of NearPresso café stops'
+    });
+    await mountGoogleMap(map);
+    if (!googleRequested) return;
+    googleScene = {map, MarkerInteractiveElement};
+    map.addEventListener('gmp-error', () => {
+      if (googleScene?.map === map) failGoogleScene(new Error('Google’s 3D map became unavailable.'));
+    });
+    revealGoogleScene();
+    document.querySelector('[data-mode="google"]').focus({preventScroll:true});
+  } catch (error) {
+    failGoogleScene(error);
+  } finally {
+    googleConnecting = false;
+    if (googleRequested && !googleScene) showGoogleSetup(googleMessage.textContent);
+  }
+}
+
+function selectGoogleView() {
+  if (googleRequested) return;
+  googleRequested = true;
+  state.cluster = null;
+  if (googleScene) {
+    revealGoogleScene();
+    fitGoogleCafes();
+    return;
+  }
+  showGoogleSetup(googleReloadMessage || (googleConnecting ? 'Loading Google’s dark 3D map…' : ''));
+  update();
+  if (googleKeyField.hidden) googleSubmit.focus({preventScroll:true});
+  else googleKeyField.focus({preventScroll:true});
+}
+
+function leaveGoogleView() {
+  if (!googleRequested) return;
+  googleRequested = false;
+  googleSetup.hidden = true;
+  googleKeyField.value = '';
+  cancelGoogleMount?.(new Error('Google view closed'));
+  setGoogleVisible(false);
+}
+
+googleSetup.addEventListener('submit', event => {
+  event.preventDefault();
+  if (googleReloadMessage) {
+    location.reload();
+    return;
+  }
+  const key = googleKeyField.value.trim();
+  if (!googleSdk && !key) {
+    showGoogleSetup('Enter your Google Maps API key.');
+    googleKeyField.focus();
+    return;
+  }
+  googleKeyField.value = '';
+  connectGoogle(key);
+});
+googleSetup.querySelector('[data-google-cancel]').addEventListener('click', () => {
+  leaveGoogleView();
+  update();
+  document.querySelector(`[data-mode="${view.mode}"]`).focus({preventScroll:true});
+});
+document.querySelector('[data-google-fit]').addEventListener('click', () => fitGoogleCafes());
+
+const $ = selector => document.querySelector(selector);
+const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
+const espressoPinIcon = '<svg class="icon" aria-hidden="true"><use href="#i-espresso-glass"/><use class="pin-steam" href="#i-espresso-steam"/></svg>';
+const escapeHtml = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+const reviewDialog = $('#review-dialog'), reviewForm = $('#review-form'), reviewNote = $('#review-note');
+let reviewingCafeId = null;
+const storageKey = 'findespresso.trail.v1';
+const status = new Map();
+try {
+  const records=JSON.parse(localStorage.getItem(storageKey)||'[]');
+  for (const [id,value] of records) {
+    if (!value) continue;
+    const rating = value.review?.rating;
+    const review = Number.isInteger(rating) && rating >= 1 && rating <= 5
+      ? {rating, note:typeof value.review.note === 'string' ? value.review.note.slice(0,reviewNote.maxLength) : ''}
+      : null;
+    if (value.saved || value.tried || review) status.set(id,{saved:!!value.saved,tried:!!value.tried,review});
+  }
+} catch {}
+const state = {city:'all',query:'',trail:false,trailFilter:'all',selected:cafes[0].id,cluster:null};
+const cafeById = new Map(cafes.map(c=>[c.id,c]));
+const rows=$('#rows'), detail=$('#detail'), pins=$('#pins'), search=$('#search');
+const mapSection=$('#atlas-map');
+const selected = () => cafeById.get(state.selected);
+const normal = text => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+function visibleCafes() {
+  const words=normal(state.query).trim().split(/\s+/);
+  return cafes.filter(c => {
+    if (c.trailOnly && !state.trail) return false;
+    if (state.city!=='all' && c.city!==state.city) return false;
+    const s=status.get(c.id);
+    if (state.trail && (!s || (state.trailFilter!=='all' && !s[state.trailFilter]))) return false;
+    const haystack=normal([c.name,c.area,c.city,c.kind].join(' '));
+    return words.every(word=>haystack.includes(word));
+  });
+}
+function writeStatus(id,current) {
+  if(current.saved||current.tried||current.review) status.set(id,current);
+  else status.delete(id);
+  try {localStorage.setItem(storageKey,JSON.stringify([...status]));}
+  catch {
+    $('#storage-note').textContent='Browser storage is unavailable. Your trail will last until this tab closes.';
+    $('#review-privacy').textContent='Browser storage is unavailable. Your review will last until this tab closes.';
+  }
+  if (state.trail && !visibleCafes().some(c=>c.id===state.selected)) state.selected=null;
+  update();
+}
+function saveStatus(id,field) {
+  const current = status.get(id) || {};
+  writeStatus(id,{...current,[field]:!current[field]});
+}
+function openReview(cafe) {
+  const review = status.get(cafe.id)?.review;
+  reviewingCafeId = cafe.id;
+  reviewForm.reset();
+  $('#review-title').textContent = review ? 'Edit your review' : 'Review this café';
+  $('#review-place').textContent = cafe.name;
+  $('#review-cancel').textContent = review ? 'Cancel' : 'Skip for now';
+  if (review) {
+    reviewForm.elements.rating.value = String(review.rating);
+    reviewNote.value = review.note;
+  }
+  reviewDialog.showModal();
+  const firstRating = reviewForm.querySelector('input:checked') || reviewForm.querySelector('input[name="rating"]');
+  firstRating.focus({preventScroll:true});
+}
+function renderRows(list) {
+  const active = document.activeElement;
+  const rowFocus = rows.contains(active) ? [active.dataset.id,active.className] : null;
+  if (!list.length) {
+    const copy=state.query?'No stops match that search. Try a café name or neighbourhood.':state.trail?'Your trail is empty here. Save a stop or mark one as tried.':'No coffee stops in this area.';
+    rows.innerHTML=`<p class="empty">${copy}</p>`;
+    return;
+  }
+  rows.innerHTML=list.map(c=>{
+    const s=status.get(c.id)||{};
+    const id=escapeHtml(c.id);
+    const sub=[c.area,c.city,c.trailOnly?c.kind:'',s.tried?'Tried':'',s.review?`Reviewed ${s.review.rating}/5`:''].filter(Boolean).join(' · ');
+    return `<div class="row${c.id===state.selected?' active':''}">
+      <button type="button" class="row-open" data-id="${id}" aria-pressed="${c.id===state.selected}">
+        <span class="row-no" aria-hidden="true">${c.no}</span><span><span class="row-name">${escapeHtml(c.name)}</span><span class="row-sub">${escapeHtml(sub)}</span></span>
+      </button><button type="button" class="row-save" data-id="${id}" aria-label="Save ${escapeHtml(c.name)}" title="Save ${escapeHtml(c.name)}" aria-pressed="${!!s.saved}">${icon('bookmark')}</button>
+    </div>`;
+  }).join('');
+  if (rowFocus) {
+    const [id,className]=rowFocus;
+    [...rows.querySelectorAll('button')].find(b=>b.dataset.id===id && b.className===className)?.focus({preventScroll:true});
+  }
+}
+function renderDetail() {
+  const previousAction=detail.contains(document.activeElement)?document.activeElement.dataset.action:null;
+  const cafe=selected();
+  if(state.cluster) {
+    detail.hidden=false;
+    detail.innerHTML=`<div class="detail-top"><span class="mono">Nearby stops</span><button type="button" data-action="close" aria-label="Close nearby stops">${icon('close')}</button></div>
+    <h2>${state.cluster.length} cafés here</h2>
+    <div class="cluster-list">${state.cluster.map(c=>`<button type="button" data-cafe="${escapeHtml(c.id)}">${escapeHtml(c.name)} · ${escapeHtml(c.area)}</button>`).join('')}</div>`;
+  } else if(cafe) {
+    const s=status.get(cafe.id)||{};
+    detail.hidden=false;
+    detail.innerHTML=`<div class="detail-top"><span class="mono">Stop ${cafe.no} / ${escapeHtml(cafe.kind)}</span><button type="button" data-action="close" aria-label="Close café details">${icon('close')}</button></div>
+    <h2>${escapeHtml(cafe.name)}</h2>
+    <p class="location">${escapeHtml(cafe.area)} · ${escapeHtml(cafe.city)}</p>
+    <p class="note">${escapeHtml(cafe.note)}</p>
+    ${s.review?`<div class="cafe-review"><span class="mono">Your review</span>
+      <span class="review-rating" role="img" aria-label="${s.review.rating} out of 5 stars">${'★'.repeat(s.review.rating)}${'☆'.repeat(5-s.review.rating)}</span>
+      ${s.review.note?`<p class="review-text">${escapeHtml(s.review.note)}</p>`:''}</div>`:''}
+    <div class="detail-actions"><a class="maps-link" href="${escapeHtml(cafe.url)}" target="_blank" rel="noopener">Google Maps ${icon('arrow')}</a>
+    <button type="button" data-action="saved" aria-label="Save café" aria-pressed="${!!s.saved}">${icon('bookmark')}${s.saved?'Saved':'Save'}</button>
+    <button type="button" data-action="tried" aria-label="Mark café as tried" aria-pressed="${!!s.tried}">${icon('check')}${s.tried?'Tried':'Mark tried'}</button>
+    ${s.tried||s.review?`<button type="button" data-action="review">${s.review?'Edit review':'Review'}</button>`:''}</div>`;
+  } else {
+    detail.hidden=true;
+    detail.replaceChildren();
+  }
+  if (previousAction) [...detail.querySelectorAll('button')].find(b=>b.dataset.action===previousAction)?.focus({preventScroll:true});
+}
+function update() {
+  const list=visibleCafes();
+  $('#clear').hidden=!state.query;
+  $('#trail').setAttribute('aria-pressed',state.trail);
+  $('#trail-count').textContent=status.size;
+  $('#trail-filters').hidden=!state.trail;
+  $('#list-title').textContent=state.trail?'My trail':'Coffee stops';
+  $('#count').textContent=`${list.length} ${list.length===1?'stop':'stops'}${state.city==='all'&&!state.query&&!state.trail?' · 3 cities':''}`;
+  $('#map-name').textContent=state.city==='all'?'Klang Valley':state.city;
+  for(const b of document.querySelectorAll('[data-city]')) b.setAttribute('aria-pressed',b.dataset.city===state.city);
+  for(const b of document.querySelectorAll('[data-trail]')) b.setAttribute('aria-pressed',b.dataset.trail===state.trailFilter);
+  const activeMode = googleRequested ? 'google' : view.mode;
+  for(const b of document.querySelectorAll('[data-mode]')) b.setAttribute('aria-pressed',b.dataset.mode===activeMode);
+  renderRows(list);renderDetail();
+  if (googleRequested && googleScene) renderGooglePins(list);
+  else requestPaint();
+}
+function refilter() {
+  state.cluster=null;
+  if(!visibleCafes().some(c=>c.id===state.selected)) state.selected=null;
+  rows.scrollTop=0;
+  update();
+  if (googleRequested && googleScene) fitGoogleCafes();
+  else fitCafes();
+}
+function openCafe(cafe,{move=true,scroll=false,focus=false}={}) {
+  if (!cafe) return;
+  state.selected=cafe.id;
+  state.cluster=null;
+  if (move) {
+    if (googleRequested && googleScene) moveGoogleTo(cafe);
+    else pointMap(cafe,2.15);
+  }
+  update();
+  if(scroll && matchMedia('(max-width: 800px)').matches) {
+    $('.map').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  }
+  if (focus) detail.querySelector('[data-action="close"]')?.focus({preventScroll:true});
+}
+function renderPins() {
+  const next=[];
+  for (const cafe of visibleCafes()) {
+    const [x,y]=ground(...world(cafe.lng,cafe.lat));
+    if(x<13||x>width-13||y<70||y>height-58) continue;
+    const current=cafe.id===state.selected;
+    const neighbour=!current && next.find(g=>!g.current && g.cafes[0].city===cafe.city && Math.hypot(g.x-x,g.y-y)<(view.zoom>6?24:34));
+    if(neighbour) {
+      const n=neighbour.cafes.length;
+      neighbour.x=(neighbour.x*n+x)/(n+1);
+      neighbour.y=(neighbour.y*n+y)/(n+1);
+      neighbour.cafes.push(cafe);
+    } else {
+      next.push({x,y,current,cafes:[cafe]});
+    }
+  }
+  // Keep the selected pin on its coordinate and nudge overlapping markers aside.
+  for(const g of next) {g.pinX=g.x;g.pinY=g.y;}
+  const radius=g=>g.current?16.5:g.cafes.length>1?14.5:11;
+  for(let pass=0;pass<3;pass++) {
+    for(let i=0;i<next.length;i++) for(let j=i+1;j<next.length;j++) {
+      const a=next[i], b=next[j];
+      const dx=b.pinX-a.pinX, dy=b.pinY-a.pinY;
+      const span=Math.hypot(dx,dy), gap=radius(a)+radius(b)+3-span;
+      if(gap<=0) continue;
+      const ux=span>.1?dx/span:1, uy=span>.1?dy/span:0;
+      if(!a.current){const move=b.current?gap:gap/2;a.pinX-=ux*move;a.pinY-=uy*move;}
+      if(!b.current){const move=a.current?gap:gap/2;b.pinX+=ux*move;b.pinY+=uy*move;}
+    }
+  }
+  for(const g of next) {
+    if(Math.hypot(g.pinX-g.x,g.pinY-g.y)>3) poly([[g.x,g.y],[g.pinX,g.pinY]],null,'#e96a45b0',1);
+  }
+  groups=next;
+  const signature=next.map(g=>g.cafes.map(c=>c.id).join('~')+(g.current?'!':'')).join('|');
+  if(signature!==pinSignature) {
+    pinSignature=signature;
+    pins.innerHTML=next.map((g,i)=>{
+      const count=g.cafes.length;
+      const label=count===1?g.cafes[0].name:`${count} cafés near ${g.cafes[0].area}`;
+      return `<button type="button" class="map-pin ${count===1?'single':''} ${g.current?'current':''}" data-pin="${i}" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}" aria-pressed="${g.current}">${count===1?espressoPinIcon:count}</button>`;
+    }).join('');
+  }
+  for(let i=0;i<next.length;i++) {
+    pins.children[i].style.left=next[i].pinX+'px';
+    pins.children[i].style.top=next[i].pinY+'px';
+  }
+}
+rows.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-id]');
+  if(!b) return;
+  if(b.classList.contains('row-save')) saveStatus(b.dataset.id,'saved');
+  else openCafe(cafeById.get(b.dataset.id),{scroll:true});
+});
+pins.addEventListener('click',e=>{
+  const b=e.target.closest('[data-pin]');
+  if(!b) return;
+  const group=groups[+b.dataset.pin];
+  if(group.cafes.length===1) {
+    openCafe(group.cafes[0],{move:false,focus:e.detail===0});
+  } else {
+    const center=screenToWorld(group.x,group.y);
+    view.x=center[0];view.y=center[1];
+    view.zoom=Math.min(12,Math.max(2.9,view.zoom*1.5));
+    state.selected=null;
+    state.cluster=group.cafes;
+    update();
+    detail.querySelector('[data-cafe]')?.focus({preventScroll:true});
+  }
+});
+detail.addEventListener('click',e=>{
+  const b=e.target.closest('button');
+  if(!b) return;
+  if(b.dataset.cafe) openCafe(cafeById.get(b.dataset.cafe),{focus:true});
+  else if(b.dataset.action==='close') {
+    state.selected=null;state.cluster=null;update();
+    const target = googleRequested && googleScene ? $('[data-mode="google"]') : canvas;
+    target.focus({preventScroll:true});
+  } else if(state.selected) {
+    const cafe = selected();
+    if (b.dataset.action==='review') openReview(cafe);
+    else {
+      const justTried = b.dataset.action==='tried' && !status.get(cafe.id)?.tried;
+      saveStatus(cafe.id,b.dataset.action);
+      if (justTried) openReview(cafe);
+    }
+  }
+});
+reviewForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const id = reviewingCafeId;
+  const rating = Number(reviewForm.elements.rating.value);
+  if (!id || !Number.isInteger(rating) || rating < 1 || rating > 5) return;
+  const note = reviewNote.value.trim().slice(0,reviewNote.maxLength);
+  writeStatus(id,{...status.get(id),review:{rating,note}});
+  reviewDialog.close();
+});
+for (const button of reviewForm.querySelectorAll('[data-review-close]')) {
+  button.addEventListener('click', () => reviewDialog.close());
+}
+reviewDialog.addEventListener('close', () => {
+  if (state.selected===reviewingCafeId) {
+    detail.querySelector('[data-action="review"]')?.focus({preventScroll:true});
+  }
+  reviewingCafeId = null;
+});
+search.addEventListener('input',()=>{state.query=search.value;refilter();});
+$('#clear').addEventListener('click',()=>{state.query=search.value='';refilter();search.focus();});
+$('#filters').addEventListener('click',e=>{
+  const b=e.target.closest('[data-city]');
+  if(b){state.city=b.dataset.city;refilter();}
+});
+$('#trail').addEventListener('click',()=>{
+  state.trail=!state.trail;state.trailFilter='all';
+  state.city='all';state.query=search.value='';refilter();
+});
+$('#trail-filters').addEventListener('click',e=>{
+  const b=e.target.closest('[data-trail]');
+  if(b){state.trailFilter=b.dataset.trail;refilter();}
+});
+$('.brand').addEventListener('click',e=>{
+  e.preventDefault();
+  leaveGoogleView();
+  Object.assign(state,{city:'all',query:'',trail:false,trailFilter:'all',selected:cafes[0].id,cluster:null});
+  search.value='';view.mode='3d';view.angle=.58;refilter();
+});
+$('.modes').addEventListener('click',e=>{
+  const b=e.target.closest('[data-mode]');
+  if(!b) return;
+  if (b.dataset.mode==='google') {
+    selectGoogleView();
+    return;
+  }
+  const returning = googleRequested;
+  leaveGoogleView();
+  if (b.dataset.mode===view.mode) {
+    if (returning) update();
+    return;
+  }
+  view.mode=b.dataset.mode;
+  view.angle=view.mode==='3d'?.58:0;
+  update();
+  if(view.zoom>1.5 && selected()) pointMap(selected(),0);
+  else fitCafes();
+});
+$('#rotate').addEventListener('click',()=>{view.angle=(view.angle+Math.PI/6)%(Math.PI*2);requestPaint();});
+$('#zoom-in').addEventListener('click',()=>zoomMap(1.29));
+$('#zoom-out').addEventListener('click',()=>zoomMap(1/1.29));
+$('#fit').addEventListener('click',fitCafes);
+const mobileLayout=matchMedia('(max-width: 800px)');
+$('#mobile-pan').addEventListener('click',()=>{
+  const enabled=mapSection.classList.toggle('pan-enabled');
+  $('#mobile-pan').setAttribute('aria-pressed',enabled);
+  $('#mobile-pan').textContent=enabled?'Done':'Pan';
+});
+for(const link of document.querySelectorAll('.mobile-jump')) link.addEventListener('click',e=>{
+  e.preventDefault();
+  $(link.hash).scrollIntoView({block:'start',behavior:'instant'});
+});
+$('#about-open').addEventListener('click',()=>$('#about').showModal());
+$('#about-edition').textContent=`November 2026 edition · ${cafes.filter(c=>!c.trailOnly).length} places across Kuala Lumpur, Cyberjaya and Putrajaya. This is a handpicked directory with roasters, bars and neighbourhood cafés.`;
+$('#about-map').innerHTML='Selected roads and waterways in the offline atlas were traced from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Terrain and buildings are stylised. The atlas, directory and trail work offline. The Google map and listing links need a connection.';
+canvas.addEventListener('wheel',e=>{
+  if (mobileLayout.matches && !mapSection.classList.contains('pan-enabled')) return;
+  e.preventDefault();
+  const box=canvas.getBoundingClientRect();
+  zoomMap(Math.exp(Math.max(-90,Math.min(90,-e.deltaY))*.003),e.clientX-box.left,e.clientY-box.top);
+},{passive:false});
+const pointers=new Map();
+const pointerXY=e=>{
+  const box=canvas.getBoundingClientRect();
+  return [e.clientX-box.left,e.clientY-box.top];
+};
+const midpoint=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
+const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+function panPixels(from,to) {
+  const a=screenToWorld(...from),b=screenToWorld(...to);
+  view.x+=a[0]-b[0];view.y+=a[1]-b[1];
+  requestPaint();
+}
+canvas.addEventListener('pointerdown',e=>{
+  if(e.button!==0||pointers.size===2) return;
+  if(e.pointerType==='touch' && mobileLayout.matches && !mapSection.classList.contains('pan-enabled')) return;
+  canvas.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId,pointerXY(e));
+  canvas.classList.add('dragging');
+});
+canvas.addEventListener('pointermove',e=>{
+  if(!pointers.has(e.pointerId)) return;
+  const old=pointers.get(e.pointerId), next=pointerXY(e);
+  if(pointers.size===2) {
+    const other=[...pointers].find(([id])=>id!==e.pointerId)[1];
+    const from=midpoint(old,other), to=midpoint(next,other);
+    panPixels(from,to);
+    const before=distance(old,other);
+    if(before>2) zoomMap(distance(next,other)/before,...to);
+  } else panPixels(old,next);
+  pointers.set(e.pointerId,next);
+});
+for(const event of ['pointerup','pointercancel','lostpointercapture']) canvas.addEventListener(event,e=>{
+  pointers.delete(e.pointerId);
+  if(!pointers.size) canvas.classList.remove('dragging');
+});
+canvas.addEventListener('keydown',e=>{
+  const shifts={ArrowLeft:[38,0],ArrowRight:[-38,0],ArrowUp:[0,38],ArrowDown:[0,-38]};
+  if(shifts[e.key]) panPixels([0,0],shifts[e.key]);
+  else if(e.key==='+'||e.key==='=') zoomMap(1.25);
+  else if(e.key==='-') zoomMap(.8);
+  else if(e.key==='Escape'){state.selected=null;state.cluster=null;update();}
+  else return;
+  e.preventDefault();
+});
+resize();
+new ResizeObserver(resize).observe(canvas);
+update();
+
+</script>
+</body>
+</html>
